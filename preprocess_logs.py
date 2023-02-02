@@ -2,6 +2,7 @@
 
 import os
 import re
+import glob
 
 from tqdm import tqdm
 
@@ -77,7 +78,6 @@ def _columns_to_floats(l):
     Axis 0 is the timesteps, axis 1 is the atoms, axis 2 is the columns"""
     out_l = []
     for step in l:
-        # out_l.append(step.splitlines().split())
         out_l.append([_str_list_to_floats(line.split()) for line in step.splitlines()])
     return out_l
 
@@ -101,6 +101,7 @@ POSTPROCESSING_FUNCTIONS = {
 def preprocess_logs(
     log_dir: str = "$HOME/semi-dft/data/screen",
     target_dir: str = "$HOME/semi-dft/data/dft",
+    filename_fstring: str = "rxn_{:d}_oo.log",
     verbose: int = 1,
 ):
     out_dict = {}
@@ -167,8 +168,8 @@ def preprocess_logs(
     for idx, rxn_num in enumerate(tqdm(paired_rxns, desc="Parsing files...")):
         out_dict[rxn_num] = {}
         # open the files with no error handling, we know the files are there
-        log_fname = os.path.join(log_dir, "rxn_{:d}_oo.log".format(rxn_num))
-        target_fname = os.path.join(target_dir, "rxn_{:d}_oo.log".format(rxn_num))
+        log_fname = os.path.join(log_dir, filename_fstring.format(rxn_num))
+        target_fname = os.path.join(target_dir, filename_fstring.format(rxn_num))
 
         # get the text out of the logfile
         with open(log_fname, "r") as file:
@@ -207,4 +208,4 @@ def preprocess_logs(
 
 
 if __name__ == "__main__":
-    preprocess_logs()
+    preprocess_logs(verbose=2)
