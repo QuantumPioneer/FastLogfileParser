@@ -1,0 +1,31 @@
+
+Preprocessing data
+150 total screening/dft pairings were found.
+137 screening logfiles had no corresponding dft file
+140 dft logfiles had no corresponding screening file
+Loading logfiles and reading pass/fail:   0%|          | 0/150 [00:00<?, ?it/s]Loading logfiles and reading pass/fail: 100%|██████████| 150/150 [00:00<00:00, 17362.45it/s]
+Execution time: 0.01 seconds
+
+Calling CountVectorizer
+Execution time: 0.00 seconds
+
+Calling TfidTransformer
+Execution time: 0.00 seconds
+
+Calling train_test_split
+Execution time: 0.00 seconds
+
+Calling MultinomialNaiveBayes
+Execution time: 0.00 seconds
+
+Calling predict
+Execution time: 0.00 seconds
+
+Accuracy: 88.89%
+truth/model      fail    converge
+-------------  ------  ----------
+fail                0           5
+converge            0          40
+
+Real Time: 0:00.43
+Max. Memory Used in kB: 106284

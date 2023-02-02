@@ -1,0 +1,32 @@
+
+Preprocessing data
+290 total screening/dft pairings were found.
+425 screening logfiles had no corresponding dft file
+0 dft logfiles had no corresponding screening file
+Loading logfiles and reading pass/fail:   0%|          | 0/290 [00:00<?, ?it/s]Loading logfiles and reading pass/fail:   1%|▏         | 4/290 [00:00<00:08, 32.28it/s]Loading logfiles and reading pass/fail:   3%|▎         | 8/290 [00:00<00:09, 28.37it/s]Loading logfiles and reading pass/fail:   4%|▍         | 12/290 [00:00<00:09, 30.88it/s]Loading logfiles and reading pass/fail:   6%|▌         | 16/290 [00:00<00:08, 31.90it/s]Loading logfiles and reading pass/fail:   7%|▋         | 20/290 [00:00<00:09, 29.42it/s]Loading logfiles and reading pass/fail:   9%|▊         | 25/290 [00:00<00:07, 34.28it/s]Loading logfiles and reading pass/fail:  10%|█         | 29/290 [00:00<00:08, 31.91it/s]Loading logfiles and reading pass/fail:  11%|█▏        | 33/290 [00:01<00:07, 32.70it/s]Loading logfiles and reading pass/fail:  13%|█▎        | 38/290 [00:01<00:07, 34.40it/s]Loading logfiles and reading pass/fail:  14%|█▍        | 42/290 [00:01<00:07, 32.16it/s]Loading logfiles and reading pass/fail:  16%|█▌        | 46/290 [00:01<00:08, 29.70it/s]Loading logfiles and reading pass/fail:  17%|█▋        | 50/290 [00:01<00:07, 32.08it/s]Loading logfiles and reading pass/fail:  19%|█▊        | 54/290 [00:01<00:06, 33.89it/s]Loading logfiles and reading pass/fail:  20%|██        | 59/290 [00:01<00:06, 33.82it/s]Loading logfiles and reading pass/fail:  22%|██▏       | 64/290 [00:01<00:06, 35.59it/s]Loading logfiles and reading pass/fail:  24%|██▍       | 69/290 [00:02<00:05, 38.79it/s]Loading logfiles and reading pass/fail:  26%|██▌       | 74/290 [00:02<00:05, 40.58it/s]Loading logfiles and reading pass/fail:  27%|██▋       | 79/290 [00:02<00:05, 37.35it/s]Loading logfiles and reading pass/fail:  29%|██▉       | 85/290 [00:02<00:05, 40.12it/s]Loading logfiles and reading pass/fail:  31%|███       | 90/290 [00:02<00:05, 35.77it/s]Loading logfiles and reading pass/fail:  33%|███▎      | 95/290 [00:02<00:05, 38.23it/s]Loading logfiles and reading pass/fail:  34%|███▍      | 99/290 [00:02<00:05, 37.00it/s]Loading logfiles and reading pass/fail:  36%|███▌      | 105/290 [00:02<00:04, 41.67it/s]Loading logfiles and reading pass/fail:  38%|███▊      | 110/290 [00:03<00:04, 40.93it/s]Loading logfiles and reading pass/fail:  40%|███▉      | 115/290 [00:03<00:05, 34.81it/s]Loading logfiles and reading pass/fail:  41%|████      | 119/290 [00:03<00:04, 35.49it/s]Loading logfiles and reading pass/fail:  43%|████▎     | 124/290 [00:03<00:04, 37.23it/s]Loading logfiles and reading pass/fail:  44%|████▍     | 129/290 [00:03<00:04, 39.16it/s]Loading logfiles and reading pass/fail:  46%|████▌     | 134/290 [00:03<00:03, 40.60it/s]Loading logfiles and reading pass/fail:  48%|████▊     | 139/290 [00:03<00:04, 36.97it/s]Loading logfiles and reading pass/fail:  50%|█████     | 145/290 [00:04<00:03, 42.30it/s]Loading logfiles and reading pass/fail:  52%|█████▏    | 150/290 [00:04<00:03, 43.00it/s]Loading logfiles and reading pass/fail:  53%|█████▎    | 155/290 [00:04<00:03, 42.69it/s]Loading logfiles and reading pass/fail:  55%|█████▌    | 160/290 [00:04<00:03, 40.06it/s]Loading logfiles and reading pass/fail:  57%|█████▋    | 165/290 [00:04<00:03, 38.41it/s]Loading logfiles and reading pass/fail:  58%|█████▊    | 169/290 [00:04<00:03, 38.44it/s]Loading logfiles and reading pass/fail:  61%|██████    | 176/290 [00:04<00:02, 44.08it/s]Loading logfiles and reading pass/fail:  62%|██████▏   | 181/290 [00:04<00:02, 43.99it/s]Loading logfiles and reading pass/fail:  65%|██████▍   | 188/290 [00:04<00:02, 49.49it/s]Loading logfiles and reading pass/fail:  67%|██████▋   | 194/290 [00:05<00:02, 46.96it/s]Loading logfiles and reading pass/fail:  69%|██████▊   | 199/290 [00:05<00:02, 42.29it/s]Loading logfiles and reading pass/fail:  71%|███████▏  | 207/290 [00:05<00:01, 49.29it/s]Loading logfiles and reading pass/fail:  74%|███████▍  | 215/290 [00:05<00:01, 53.94it/s]Loading logfiles and reading pass/fail:  76%|███████▌  | 221/290 [00:05<00:01, 48.01it/s]Loading logfiles and reading pass/fail:  78%|███████▊  | 226/290 [00:05<00:01, 46.58it/s]Loading logfiles and reading pass/fail:  80%|███████▉  | 231/290 [00:05<00:01, 42.51it/s]Loading logfiles and reading pass/fail:  81%|████████▏ | 236/290 [00:06<00:01, 40.40it/s]Loading logfiles and reading pass/fail:  83%|████████▎ | 241/290 [00:06<00:01, 38.25it/s]Loading logfiles and reading pass/fail:  85%|████████▍ | 246/290 [00:06<00:01, 38.95it/s]Loading logfiles and reading pass/fail:  87%|████████▋ | 251/290 [00:06<00:00, 39.85it/s]Loading logfiles and reading pass/fail:  88%|████████▊ | 256/290 [00:06<00:00, 36.46it/s]Loading logfiles and reading pass/fail:  90%|████████▉ | 260/290 [00:06<00:00, 36.27it/s]Loading logfiles and reading pass/fail:  91%|█████████▏| 265/290 [00:06<00:00, 38.97it/s]Loading logfiles and reading pass/fail:  94%|█████████▍| 272/290 [00:06<00:00, 45.30it/s]Loading logfiles and reading pass/fail:  96%|█████████▌| 277/290 [00:07<00:00, 45.65it/s]Loading logfiles and reading pass/fail:  97%|█████████▋| 282/290 [00:07<00:00, 39.34it/s]Loading logfiles and reading pass/fail:  99%|█████████▉| 287/290 [00:07<00:00, 38.21it/s]Loading logfiles and reading pass/fail: 100%|██████████| 290/290 [00:07<00:00, 38.88it/s]
+Execution time: 7.46 seconds
+
+Calling CountVectorizer
+Execution time: 1121.00 seconds
+
+Calling TfidTransformer
+Execution time: 0.00 seconds
+
+Calling train_test_split
+Execution time: 0.00 seconds
+
+Calling MultinomialNaiveBayes
+Execution time: 0.00 seconds
+
+Calling predict
+Execution time: 0.00 seconds
+
+Accuracy: 80.46%
+Traceback (most recent call last):
+  File "/home/jwburns/nlp-dft/main.py", line 76, in <module>
+    from tabulate import tabulate
+ModuleNotFoundError: No module named 'tabulate'
+Command exited with non-zero status 1
+
+Real Time: 18:49.27
+Max. Memory Used in kB: 15991440
