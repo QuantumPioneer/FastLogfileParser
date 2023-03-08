@@ -7,6 +7,7 @@ from tqdm import tqdm
 
 FILE_DESCRIPTORS = (
     "rxn_id",
+    "converged",
     "gibbs",
     "e0_zpe",
     "e0",
@@ -74,6 +75,7 @@ if __name__ == "__main__":
             conn,
             """CREATE TABLE IF NOT EXISTS oo_data (
                 rxn_id INTEGER PRIMARY KEY,
+                converged TEXT,
                 gibbs TEXT,
                 e0_zpe TEXT,
                 e0 TEXT,
@@ -101,6 +103,7 @@ if __name__ == "__main__":
                 conn,
                 """INSERT INTO oo_data (
                     rxn_id,
+                    converged,
                     gibbs,
                     e0_zpe,
                     e0,
@@ -126,11 +129,13 @@ if __name__ == "__main__":
                         ?,
                         ?,
                         ?,
+                        ?,
                         ?
                     );
                 """,
                 (
                     rxn_id,
+                    str(row["converged"]),
                     str(row["gibbs"]),
                     str(row["e0_zpe"]),
                     str(row["e0"]),
@@ -150,8 +155,8 @@ if __name__ == "__main__":
     # use ast.literal_eval to get the list dtype back
     out = execute_read_query(
         conn,
-        """    SELECT * FROM oo_data"""  # WHERE rxn_id=?;""",
-        # (0,),
+        """    SELECT * FROM oo_data WHERE rxn_id=?;""",
+        (0,),
     )
     out_dict = {}
     for row in tqdm(out, "Post-processing data..."):

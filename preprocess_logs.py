@@ -117,6 +117,7 @@ def preprocess_logs(
     # files are formatted as rxn_###_name so we pull out ###
     target_files_rxn_numbers = set(int(i.split("_")[1]) for i in target_files)
     logfiles_rxn_numbers = set(int(i.split("_")[1]) for i in log_files)
+    all_rxn_numbers = target_files_rxn_numbers.union(logfiles_rxn_numbers)
 
     # get only the rxns which passed the semi-emperical step and were then run in DFT
     paired_rxns = target_files_rxn_numbers.intersection(logfiles_rxn_numbers)
@@ -165,7 +166,7 @@ def preprocess_logs(
             )
 
     # loop through the paired files to determine if they converged and read the logs
-    for idx, rxn_num in enumerate(tqdm(paired_rxns, desc="Parsing files...")):
+    for idx, rxn_num in enumerate(tqdm(all_rxn_numbers, desc="Parsing files...")):
         out_dict[rxn_num] = {}
         # open the files with no error handling, we know the files are there
         log_fname = os.path.join(log_dir, filename_fstring.format(rxn_num))
@@ -186,18 +187,20 @@ def preprocess_logs(
                     except:
                         result = None
                 out_dict[rxn_num][pattern_name] = result
-
-        # check the last line of the file to see if it converged
-        # fast way to get to the last line thanks to:
-        # https://stackoverflow.com/questions/46258499/how-to-read-the-last-line-of-a-file-in-python
-        with open(target_fname, "rb") as file:
-            file.seek(-2, os.SEEK_END)
-            while file.read(1) != b"\n":
-                file.seek(-2, os.SEEK_CUR)
-            last_line = file.readline().decode()
-            # ends with Normal termination ... or else did not converge
-            # True if converged, False otherwise
-            out_dict[rxn_num]["converged"] = last_line.split(" ")[1] == "Normal"
+        if rxn_num in paired_rxns:
+            # check the last line of the file to see if it converged
+            # fast way to get to the last line thanks to:
+            # https://stackoverflow.com/questions/46258499/how-to-read-the-last-line-of-a-file-in-python
+            with open(target_fname, "rb") as file:
+                file.seek(-2, os.SEEK_END)
+                while file.read(1) != b"\n":
+                    file.seek(-2, os.SEEK_CUR)
+                last_line = file.readline().decode()
+                # ends with Normal termination ... or else did not converge
+                # True if converged, False otherwise
+                out_dict[rxn_num]["converged"] = last_line.split(" ")[1] == "Normal"
+        else:
+            out_dict[rxn_num]["converged"] = "No DFT"
 
     if verbose > 1:
         import pprint
