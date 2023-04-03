@@ -6,6 +6,20 @@ import glob
 
 from tqdm import tqdm
 
+# lord forgive me for doing this
+# from fabric.connection import Connection
+
+# host = "greencloud.mit.edu"
+# user = "admin"
+
+# gcloud_ssh_connection = Connection(host, user)
+# gcloud_sftp_connection = gcloud_ssh_connection.sftp()
+
+
+# def ropen(fname, mode):
+#     return gcloud_sftp_connection.open(fname, mode)
+
+
 RETRIEVAL_PATTERNS = {
     "gibbs": r" Sum of electronic and thermal Free Energies=\s+(-?\d+\.\d+)",
     "e0_zpe": r" Sum of electronic and zero-point Energies=\s+(-?\d+\.\d+)",
@@ -101,7 +115,8 @@ POSTPROCESSING_FUNCTIONS = {
 def preprocess_logs(
     log_dir: str = "$HOME/semi-dft/data/screen",
     target_dir: str = "$HOME/semi-dft/data/dft",
-    filename_fstring: str = "rxn_{:d}_oo.log",
+    screen_filename_fstring: str = "rxn_{:d}_oo.log",
+    dft_filename_fstring: str = "rxn_{:d}_oo.log",
     verbose: int = 1,
 ):
     out_dict = {}
@@ -169,8 +184,8 @@ def preprocess_logs(
     for idx, rxn_num in enumerate(tqdm(all_rxn_numbers, desc="Parsing files...")):
         out_dict[rxn_num] = {}
         # open the files with no error handling, we know the files are there
-        log_fname = os.path.join(log_dir, filename_fstring.format(rxn_num))
-        target_fname = os.path.join(target_dir, filename_fstring.format(rxn_num))
+        log_fname = os.path.join(log_dir, screen_filename_fstring.format(rxn_num))
+        target_fname = os.path.join(target_dir, dft_filename_fstring.format(rxn_num))
 
         # get the text out of the logfile
         with open(log_fname, "r") as file:

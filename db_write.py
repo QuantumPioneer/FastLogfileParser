@@ -64,7 +64,9 @@ if __name__ == "__main__":
     parser.add_argument("-d", "--db-file")
     parser.add_argument("-s", "--semi-dir")
     parser.add_argument("-t", "--dft-dir")
-    parser.add_argument("-f", "--file-fstring")
+    parser.add_argument("--screen-file-fstring")
+    parser.add_argument("--dft-file-fstring")
+    parser.add_argument("--new-table-name")
     parser.add_argument("-a", "--already-init", action="store_true")
     args = parser.parse_args()
 
@@ -73,7 +75,7 @@ if __name__ == "__main__":
     if not args.already_init:
         execute_and_commit(
             conn,
-            """CREATE TABLE IF NOT EXISTS oo_data (
+            f"""CREATE TABLE IF NOT EXISTS {args.new_table_name} (
                 rxn_id INTEGER PRIMARY KEY,
                 converged TEXT,
                 gibbs TEXT,
@@ -96,12 +98,13 @@ if __name__ == "__main__":
         data = preprocess_logs(
             args.semi_dir,
             args.dft_dir,
-            args.file_fstring,
+            args.screen_file_fstring,
+            args.dft_file_fstring,
         )
         for rxn_id, row in tqdm(data.items(), "Writing to DB..."):
             execute_and_commit(
                 conn,
-                """INSERT INTO oo_data (
+                f"""INSERT INTO {args.new_table_name} (
                     rxn_id,
                     converged,
                     gibbs,
@@ -155,7 +158,7 @@ if __name__ == "__main__":
     # use ast.literal_eval to get the list dtype back
     out = execute_read_query(
         conn,
-        """    SELECT * FROM oo_data WHERE rxn_id=?;""",
+        f"""    SELECT * FROM {args.new_table_name} WHERE rxn_id=?;""",
         (0,),
     )
     out_dict = {}
