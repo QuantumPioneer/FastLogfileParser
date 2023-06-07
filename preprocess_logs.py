@@ -1,3 +1,5 @@
+# Use reaction id 11, 236, and 233 as test cases
+
 # make a bunch of symlinks to the files on superclloud
 
 import os
@@ -23,11 +25,11 @@ from tqdm import tqdm
 RETRIEVAL_PATTERNS = {
     "gibbs": r" Sum of electronic and thermal Free Energies=\s+(-?\d+\.\d+)",
     "e0_zpe": r" Sum of electronic and zero-point Energies=\s+(-?\d+\.\d+)",
-    "e0": r"HF=(-?\d+.\d+)",
-    "zpe": r"ZeroPoint=(-?\d+.\d+)",
+    "e0": r"HF=(-?\d+.\d+)",  # they can optionally be a newline and space between each symbol including the digits, this is why sig figs are getting cut off
+    "zpe": r"ZeroPoint=(-?\d+.\d+)",  # they can optionally be a newline and space between each symbol including the digits
     "cpu_time": r" Job cpu time: \s+(\d+ days\s+\d+ hours\s+\d+ minutes\s+\d+\.?\d+ seconds)",
-    "wall_time": r" Elapsed time: \s+(\d+ days\s+\d+ hours\s+\d+ minutes\s+\d+\.?\d+ seconds)",
-    "num_atoms": r"Atom    (\d+) has atomic number  \d{1,3} and mass   \d+\.\d+\n Molecular mass:   \d+\.\d+ amu",
+    "wall_time": r" Elapsed time: \s+(\d+ days\s+\d+ hours\s+\d+ minutes\s+\d+\.?\d+ seconds)",  # also get it for the DFT simulation
+    "num_atoms": r"Atom    (\d+) has atomic number  \d{1,3} and mass   \d+\.\d+\n Molecular mass:   \d+\.\d+ amu",  # just use length of xyz coords instead, the thermochemistry is not always output
     "frequencies": r" Frequencies --\s+(-?\d+.\d+)\s+(-?\d+.\d+)\s+(-?\d+.\d+)",
     "std_forces": (
         r" Forces in standard orientation:\n"
@@ -181,7 +183,7 @@ def preprocess_logs(
             )
 
     # loop through the paired files to determine if they converged and read the logs
-    for idx, rxn_num in enumerate(tqdm(all_rxn_numbers, desc="Parsing files...")):
+    for idx, rxn_num in enumerate(tqdm(paired_rxns, desc="Parsing files...")):
         out_dict[rxn_num] = {}
         # open the files with no error handling, we know the files are there
         log_fname = os.path.join(log_dir, screen_filename_fstring.format(rxn_num))
@@ -201,19 +203,25 @@ def preprocess_logs(
                         result = requries_postprocessing(result)
                     except:
                         result = None
+                if pattern_name == "std_xyz":
+                    result = result[-1] if result else result
                 out_dict[rxn_num][pattern_name] = result
         if rxn_num in paired_rxns:
             # check the last line of the file to see if it converged
             # fast way to get to the last line thanks to:
             # https://stackoverflow.com/questions/46258499/how-to-read-the-last-line-of-a-file-in-python
-            with open(target_fname, "rb") as file:
-                file.seek(-2, os.SEEK_END)
-                while file.read(1) != b"\n":
-                    file.seek(-2, os.SEEK_CUR)
-                last_line = file.readline().decode()
-                # ends with Normal termination ... or else did not converge
-                # True if converged, False otherwise
-                out_dict[rxn_num]["converged"] = last_line.split(" ")[1] == "Normal"
+            try:
+                with open(target_fname, "rb") as file:
+                    file.seek(-2, os.SEEK_END)
+                    while file.read(1) != b"\n":
+                        file.seek(-2, os.SEEK_CUR)
+                    last_line = file.readline().decode()
+                    # ends with Normal termination ... or else did not converge
+                    # True if converged, False otherwise
+                    out_dict[rxn_num]["converged"] = last_line.split(" ")[1] == "Normal"
+            except:
+                out_dict[rxn_num]["converged"] = "System Error"
+
         else:
             out_dict[rxn_num]["converged"] = "No DFT"
 

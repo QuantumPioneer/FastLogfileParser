@@ -156,15 +156,15 @@ if __name__ == "__main__":
 
     # get the data back and post-process it
     # use ast.literal_eval to get the list dtype back
-    out = execute_read_query(
-        conn,
-        f"""    SELECT * FROM {args.new_table_name} WHERE rxn_id=?;""",
-        (0,),
-    )
-    out_dict = {}
-    for row in tqdm(out, "Post-processing data..."):
-        rxn_id = row[0]
-        out_dict[rxn_id] = {}
-        for i, name in zip(row[1:], FILE_DESCRIPTORS[1:]):
-            if type(i) != int:
-                out_dict[rxn_id][name] = ast.literal_eval(i)
+    # out = execute_read_query(
+    #     conn,
+    #     f"""    SELECT * FROM {args.new_table_name} WHERE rxn_id=?;""",
+    #     (0,),
+    # )
+    # out_dict = {}
+    # for row in tqdm(out, "Post-processing data..."):
+    #     rxn_id = row[0]
+    #     out_dict[rxn_id] = {}
+    #     for i, name in zip(row[1:], FILE_DESCRIPTORS[1:]):
+    #         if type(i) != int:
+    #             out_dict[rxn_id][name] = ast.literal_eval(i)
