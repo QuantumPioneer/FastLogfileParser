@@ -3,11 +3,11 @@ import re
 RETRIEVAL_PATTERNS = {
     "gibbs": r" Sum of electronic and thermal Free Energies=\s+(-?\d+\.\d+)",
     "e0_zpe": r" Sum of electronic and zero-point Energies=\s+(-?\d+\.\d+)",
-    "e0": r"HF=(-?\d+.\d+)",  # they can optionally be a newline and space between each symbol including the digits, this is why sig figs are getting cut off
-    "zpe": r"ZeroPoint=(-?\d+.\d+)",  # they can optionally be a newline and space between each symbol including the digits
+    "e0": r"HF=(-?\d+.\d+)",
+    "zpe": r"ZeroPoint=(-?\d+.\d+)",
     "cpu_time": r" Job cpu time: \s+(\d+ days\s+\d+ hours\s+\d+ minutes\s+\d+\.?\d+ seconds)",
     "wall_time": r" Elapsed time: \s+(\d+ days\s+\d+ hours\s+\d+ minutes\s+\d+\.?\d+ seconds)",  # also get it for the DFT simulation
-    "num_atoms": r"Atom    (\d+) has atomic number  \d{1,3} and mass   \d+\.\d+\n Molecular mass:   \d+\.\d+ amu",  # just use length of xyz coords instead, the thermochemistry is not always output
+    # "num_atoms": r"Atom    (\d+) has atomic number  \d{1,3} and mass   \d+\.\d+\n Molecular mass:   \d+\.\d+ amu",
     "frequencies": r" Frequencies --\s+(-?\d+.\d+)\s+(-?\d+.\d+)\s+(-?\d+.\d+)",
     "std_forces": (
         r" Forces in standard orientation:\n"
@@ -38,6 +38,7 @@ RETRIEVAL_PATTERNS = {
     ),
     "steps": r"Number of steps in this run=\s+(\d+) ",
 }
+
 
 COMPILED_PATTERNS = {
     pattern_name: re.compile(pattern)
