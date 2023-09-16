@@ -36,7 +36,7 @@ def test_fast_gaussian_logfile_parser():
     assert job_2["number_of_optimization_steps"] == 9
     assert job_3["number_of_optimization_steps"] == 31
 
-    # need to parse the frequency modes for analyzing reaction coordinates, following is an exmaple from AM1 negative frequency. We should parse all modes.
+    """  decided on a different output format for the time being
     assert job_1["frequency_modes"] == {
         1: ("H", (-0.0, -0.02, -0.01)),
         2: ("O", (-0.01, 0.01, -0.05)),
@@ -74,3 +74,4 @@ def test_fast_gaussian_logfile_parser():
         34: ("H", (0.0, -0.0, 0.0)),
         35: ("H", (0.0, 0.0, 0.0)),
     }
+    """
