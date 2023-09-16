@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fastlogfileparser"
+version = "1.0.0a0"
+authors = [
+    { name = "Jackson Burns" },
+]
+license = { text = "MIT" }
+description = "Parse computational chemistry log files, but fast-ly."
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+urls = { Homepage = "https://github.com/QuantumPioneer/FastLogfileParser" }
+requires-python = ">=3.8"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["black", "isort", "pytest"]
+demos = ["jupyter"]
+
+[project.readme]
+file = "README.md"
+content-type = "text/markdown"
+
+[tool.isort]
+profile = "black"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["fastlogfileparser*"]
+exclude = ["test*"]
