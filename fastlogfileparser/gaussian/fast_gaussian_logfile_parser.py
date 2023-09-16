@@ -36,23 +36,26 @@ def fast_gaussian_logfile_parser(
                 if pattern_name == "wavefunction_energy" and not is_wavefunction_method:
                     continue
                 result = re.findall(compiled_pattern, logfile_text)
-                # post-process where required
-                requires_postprocessing = POSTPROCESSING_FUNCTIONS.get(
-                    pattern_name, False
-                )
-                if requires_postprocessing:
-                    try:
-                        result = requires_postprocessing(result)
-                    except Exception as e:
-                        if verbose > 0:
-                            warnings.warn(
-                                "Failed postprocessing for {:s} on file {:s}, error: {:s}".format(
-                                    pattern_name,
-                                    file,
-                                    str(e),
+                if not result:
+                    result = None
+                else:
+                    # post-process where required
+                    requires_postprocessing = POSTPROCESSING_FUNCTIONS.get(
+                        pattern_name, False
+                    )
+                    if requires_postprocessing:
+                        try:
+                            result = requires_postprocessing(result)
+                        except Exception as e:
+                            if verbose > 0:
+                                warnings.warn(
+                                    "Failed postprocessing for {:s} on file {:s}, error: {:s}".format(
+                                        pattern_name,
+                                        file,
+                                        str(e),
+                                    )
                                 )
-                            )
-                        result = None
+                            result = None
                 out_dict[pattern_name] = result
             out_dict["number_of_atoms"] = len(out_dict["std_xyz"][0])
             # remove 1 for the initial geometry printout
