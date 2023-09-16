@@ -1,5 +1,5 @@
 def crush_ginc_block(opened_file):
-    """Takes an opened logfile, reads and concatenates the "1\1\GINC" block
+    """Takes an opened logfile, reads and concatenates the GINC block
 
     Args:
         logfile_text (fileIO): Logfile as read by open()
@@ -24,7 +24,7 @@ def crush_ginc_block(opened_file):
 
 def split_composite_job(opened_file):
     """Takes an opened logfile, breaks into a new set of text for each linked job
-    
+
     Args:
         logfile_text (fileIO): Logfile as read by open()
     """

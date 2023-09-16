@@ -1,3 +1,9 @@
+"""
+Post-processors that turn regex matches into useful data types.
+
+All returns from regex parser are lists, so these functions access the lists
+appropriately and then munge the contents.
+"""
 def _unix_time_to_seconds(in_time):
     """Take ['0 days  0 hours 20 minutes 45.6 seconds'] formatted time and convert to seconds."""
     tmp = in_time[0].split()
@@ -54,8 +60,8 @@ POSTPROCESSING_FUNCTIONS = {
     "e0_zpe": _str_to_float,
     "gibbs": _str_to_float,
     "frequency_modes": _freq_modes,
-    "frequencies": lambda l: [_str_list_to_floats(list(i)) for i in l],
-    "steps": lambda l: int(l[0]),
+    "frequencies": lambda in_list: [_str_list_to_floats(list(i)) for i in in_list],
+    "steps": lambda in_list: int(in_list[0]),
     "std_forces": _columns_to_floats,
     "std_xyz": _columns_to_floats,
     "xyz": _columns_to_floats,
