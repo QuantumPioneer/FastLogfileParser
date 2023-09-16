@@ -1,9 +1,9 @@
-"""
-Post-processors that turn regex matches into useful data types.
+# Post-processors that turn regex matches into useful data types.
+#
+# All returns from regex parser are lists, so these functions access the lists
+# appropriately and then munge the contents.
 
-All returns from regex parser are lists, so these functions access the lists
-appropriately and then munge the contents.
-"""
+
 def _unix_time_to_seconds(in_time):
     """Take ['0 days  0 hours 20 minutes 45.6 seconds'] formatted time and convert to seconds."""
     tmp = in_time[0].split()
