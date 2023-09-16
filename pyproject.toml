@@ -19,7 +19,7 @@ dependencies = []
 
 [project.optional-dependencies]
 dev = ["black", "isort", "pytest"]
-demos = ["jupyter"]
+demos = ["ase", "cclib"]
 
 [project.readme]
 file = "README.md"

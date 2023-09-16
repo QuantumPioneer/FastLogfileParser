@@ -11,13 +11,14 @@ from .utils.postprocessing import POSTPROCESSING_FUNCTIONS
 
 def fast_gaussian_logfile_parser(
     target_file: str,
+    is_wavefunction_method: bool = False,
     verbose: int = 0,
 ):
     """Parse Gaussian Logfile, but Fast-ly
 
     Args:
         target_file (str, optional): Logfile path.
-        status_only (bool, optional): Retrieve ONLY the status of the job, but nearly instantly. Defaults to False.
+        is_wavefunction_method (bool, optional): Turn on to look for method-specific total energy for wavefunction methods. Defaults to False.
         verbose (int, optional): 0 for silent, 1 for info, 2 for debug. Defaults to 0.
 
     Returns:
@@ -32,6 +33,8 @@ def fast_gaussian_logfile_parser(
         for logfile_text in preprocessed_text_array:
             out_dict = {}
             for pattern_name, compiled_pattern in COMPILED_PATTERNS.items():
+                if pattern_name == "wavefunction_energy" and not is_wavefunction_method:
+                    continue
                 result = re.findall(compiled_pattern, logfile_text)
                 # post-process where required
                 requires_postprocessing = POSTPROCESSING_FUNCTIONS.get(

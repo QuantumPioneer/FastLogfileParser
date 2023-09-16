@@ -6,12 +6,7 @@ RETRIEVAL_PATTERNS = {
     "e0_h": r" Sum of electronic and thermal Enthalpies=\s+(-?\d+\.\d+)",  # Enthalpy at 298K, H(298K) = e0 + H_corr
     "hf": r"HF=(-?\d+.\d+)",  # equals e0 only for non-wave function methods e.g., DFT, semi-empirical
     "zpe": r"ZeroPoint=(-?\d+.\d+)",
-    "cbsqb3": r"CBSQB3=(-?\d+.\d+)",
-    "mp2": r"MP2=(-?\d+.\d+)",
-    "g4": r"G4=(-?\d+.\d+)",
-    "g2": r"G2=(-?\d+.\d+)",
-    "g3": r"G3=(-?\d+.\d+)",
-    "ccsd": r"CCSD=(-?\d+.\d+)",
+    "wavefunction_energy": r"[CBSQB3|MP2|G4|G3|G2|CCSD]=(-?\d+.\d+)",
     "recovered_energy": r" Recovered energy=\s+(-?\d+.\d+)",
     "scf": r" SCF Done:  E\(UAM1\) = \s+(-?\d+.\d+)",
     "cpu_time": r" Job cpu time: \s+(\d+ days\s+\d+ hours\s+\d+ minutes\s+\d+\.?\d+ seconds)",
