@@ -45,6 +45,15 @@ def test_fast_gaussian_logfile_parser():
     assert job_3["recovered_energy"][-2] == -57.328008209
     assert job_3["recovered_energy"][-1] == -57.3280082435
     assert len(job_3["recovered_energy"]) == 31
+    assert job_1["frequencies"][0] == [-2302.4897, -44.9107, 19.427]
+    assert job_1["frequencies"][-1] == [3202.7059, 3209.6301, 3367.7609]
+    assert len(job_1["frequencies"]) == 33
+    assert job_2["frequencies"][0] == [-2110.8474, -65.2439, -37.1754]
+    assert job_2["frequencies"][-1] == [2770.4387, 2772.4802, 2849.8632]
+    assert len(job_2["frequencies"]) == 33   
+    assert job_3["frequencies"][0] == [-1070.248, 21.2558, 34.2835]
+    assert job_3["frequencies"][-1] == [3144.2251, 3148.1604, 3481.313]
+    assert len(job_3["frequencies"]) == 33  
 
     """  decided on a different output format for the time being
     assert job_1["frequency_modes"] == {
