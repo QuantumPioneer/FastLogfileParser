@@ -38,6 +38,13 @@ def test_fast_gaussian_logfile_parser():
     assert job_1["number_of_optimization_steps"] == 18
     assert job_2["number_of_optimization_steps"] == 9
     assert job_3["number_of_optimization_steps"] == 31
+    assert job_1["recovered_energy"] == None
+    assert job_2["recovered_energy"] == None
+    assert job_3["recovered_energy"][0] == -57.3069045667
+    assert job_3["recovered_energy"][1] == -57.3139032763
+    assert job_3["recovered_energy"][-2] == -57.328008209
+    assert job_3["recovered_energy"][-1] == -57.3280082435
+    assert len(job_3["recovered_energy"]) == 31
 
     """  decided on a different output format for the time being
     assert job_1["frequency_modes"] == {
