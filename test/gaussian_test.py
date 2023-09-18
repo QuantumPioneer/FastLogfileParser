@@ -207,6 +207,9 @@ def test_fast_gaussian_logfile_parser():
                                 [33.0, 1.0, 0.0, -4.286628, -1.836519, -4.384844],
                                 [34.0, 1.0, 0.0, -2.467614, -2.496701, -2.862313],
                                 [35.0, 1.0, 0.0, -6.368236, 3.716111, 0.238162]]
+    assert job_1["max_steps"] == 64
+    assert job_2["max_steps"] == 64
+    assert job_3["max_steps"] == 90
 
     """  decided on a different output format for the time being
     assert job_1["frequency_modes"] == {

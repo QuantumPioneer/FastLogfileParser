@@ -39,7 +39,7 @@ RETRIEVAL_PATTERNS = {
         r"([\s+\d+\s+\d+\s+\d+\s+-?\d+\.\d+\s+-?\d+\.\d+\s+-?\d+\.\d+]+)\n"
         r" ---------------------------------------------------------------------"
     ),
-    "steps": r"Number of steps in this run=\s+(\d+) ",
+    "max_steps": r"Number of steps in this run=\s+(\d+) ",
     "frequency_modes": (
         r"  Atom  AN      X      Y      Z        X      Y      Z        X      Y      Z\n"
         r"([\s+\d+\s+\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d]+)\n"

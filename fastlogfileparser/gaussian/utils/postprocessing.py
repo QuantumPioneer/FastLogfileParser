@@ -64,7 +64,7 @@ POSTPROCESSING_FUNCTIONS = {
     "gibbs": _str_to_float,
     "frequency_modes": _freq_modes,
     "frequencies": lambda in_list: [_str_list_to_floats(list(i)) for i in in_list],
-    "steps": lambda in_list: int(in_list[0]),
+    "max_steps": lambda in_list: int(in_list[0]),
     "std_forces": _columns_to_floats,
     "std_xyz": _columns_to_floats,
     "xyz": _columns_to_floats,
