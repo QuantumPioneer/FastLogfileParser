@@ -54,6 +54,24 @@ def test_fast_gaussian_logfile_parser():
     assert job_3["frequencies"][0] == [-1070.248, 21.2558, 34.2835]
     assert job_3["frequencies"][-1] == [3144.2251, 3148.1604, 3481.313]
     assert len(job_3["frequencies"]) == 33  
+    assert len(job_1['std_forces']) == 19
+    assert len(job_1['std_forces'][0]) == 35
+    assert job_1['std_forces'][0][0] == [1.0, 1.0, -0.012034736, 0.000231533, -0.008718935]
+    assert job_1['std_forces'][0][-1] == [35.0, 1.0, 0.002160253, -0.010676581, -0.009002864]
+    assert job_1['std_forces'][-1][0] == [1.0, 1.0, -8e-08, -9e-09, 1.92e-07]
+    assert job_1['std_forces'][-1][-1] == [35.0, 1.0, -2.2e-08, 1.8e-08, -1e-09]
+    assert len(job_2['std_forces']) == 10
+    assert len(job_2['std_forces'][0]) == 35
+    assert job_2['std_forces'][0][0] == [1.0, 1.0, 0.013295924, -0.000472478, 0.000883286]
+    assert job_2['std_forces'][0][-1] == [35.0, 1.0, -0.000877563, 0.001225992, 0.003512116]
+    assert job_2['std_forces'][-1][0] == [1.0, 1.0, 2.06e-07, -1.15e-07, -2.2e-08]
+    assert job_2['std_forces'][-1][-1] == [35.0, 1.0, 6e-09, 5e-09, 2e-09]
+    assert len(job_3['std_forces']) == 32
+    assert len(job_3['std_forces'][0]) == 35
+    assert job_3['std_forces'][0][0] == [1.0, 1.0, -0.016887644, -0.00517337, -0.008264572]
+    assert job_3['std_forces'][0][-1] == [35.0, 1.0, -0.001623912, 0.006837508, 0.008029253]
+    assert job_3['std_forces'][-1][0] == [1.0, 1.0, -5.19e-07, -2.07e-07, 3.29e-07]
+    assert job_3['std_forces'][-1][-1] == [35.0, 1.0, 1.95e-07, -5.4e-08, 8.3e-08]
 
     """  decided on a different output format for the time being
     assert job_1["frequency_modes"] == {
