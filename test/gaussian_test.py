@@ -2,7 +2,10 @@ import os
 
 from fastlogfileparser.gaussian import fast_gaussian_logfile_parser
 
-
+# TODO: fix SCF energy non convergence parsing problem
+# TODO: parse level of theory LOT (multiple potential places to get this info, best from job specification)
+# TODO: fix frequency_modes bug, modes for last freq not parsed, probably due to tailing empty line not matching regex
+# currently NOT tested: SCF, LOT, frequency_modes values
 def test_fast_gaussian_logfile_parser():
     """
     Test parser using a log file with gaussian LINK of three consecutive semi-empirical level jobs AM1, PM7, XTB
@@ -210,6 +213,9 @@ def test_fast_gaussian_logfile_parser():
     assert job_1["max_steps"] == 64
     assert job_2["max_steps"] == 64
     assert job_3["max_steps"] == 90
+    assert len(job_1['frequency_modes']) == 99 # fix this bug
+    assert len(job_2['frequency_modes']) == 99
+    assert len(job_3['frequency_modes']) == 99
 
     """  decided on a different output format for the time being
     assert job_1["frequency_modes"] == {
