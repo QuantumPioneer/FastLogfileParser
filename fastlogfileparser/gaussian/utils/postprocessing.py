@@ -50,6 +50,7 @@ POSTPROCESSING_FUNCTIONS = {
     "wall_time": _unix_time_to_seconds,
     "e0": _str_to_float,
     "e0_h": _str_to_float,
+    "hf": _str_to_float,
     "scf": _str_list_to_floats,
     "zpe": _str_to_float,
     "cbsqb3": _str_to_float,
