@@ -52,6 +52,7 @@ POSTPROCESSING_FUNCTIONS = {
     "e0_h": _str_to_float,
     "hf": _str_to_float,
     "scf": _str_list_to_floats,
+    "recovered_energy": _str_list_to_floats,
     "zpe": _str_to_float,
     "cbsqb3": _str_to_float,
     "mp2": _str_to_float,
