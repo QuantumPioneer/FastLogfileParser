@@ -23,6 +23,9 @@ def test_fast_gaussian_logfile_parser():
     assert job_1["e0_h"] == 0.519054
     assert job_2["e0_h"] == 0.442973
     assert job_3["e0_h"] == -57.047106
+    assert job_1['hf'] == 0.2253936
+    assert job_2['hf'] == 0.1701352
+    assert job_3['hf'] == -57.3280082
     assert job_1["cpu_time"] == 1729.1
     assert job_2["cpu_time"] == 732.8
     assert job_3["cpu_time"] == 450.9
