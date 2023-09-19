@@ -8,7 +8,8 @@ RETRIEVAL_PATTERNS = {
     "zpe": r"ZeroPoint=(-?\d+.\d+)",
     "wavefunction_energy": r"[CBSQB3|MP2|G4|G3|G2|CCSD]=(-?\d+.\d+)",
     "recovered_energy": r" Recovered energy=\s+(-?\d+.\d+)",
-    "scf": r" SCF Done:  E\(UAM1\) = \s+(-?\d+.\d+)",
+    "scf": r"(?<! >>>>>>>>>> Convergence criterion not met\.\n) SCF Done:  E\(.*\) =  (\d\.\d{12})",
+    "route_section": r"#([A-Za-z\d\,=\(\)\-\/ \"\.\_]*)",
     "cpu_time": r" Job cpu time: \s+(\d+ days\s+\d+ hours\s+\d+ minutes\s+\d+\.?\d+ seconds)",
     "wall_time": r" Elapsed time: \s+(\d+ days\s+\d+ hours\s+\d+ minutes\s+\d+\.?\d+ seconds)",
     "frequencies": r" Frequencies --\s+(-?\d+.\d+)\s+(-?\d+.\d+)\s+(-?\d+.\d+)",
@@ -43,9 +44,13 @@ RETRIEVAL_PATTERNS = {
     "frequency_modes": (
         r"  Atom  AN      X      Y      Z        X      Y      Z        X      Y      Z\n"
         r"([\s+\d+\s+\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d]+)\n"
-        r"\s+\d+\s+\d+\s+\d+\n"
+        r"(?:\s+\d+\s+\d+\s+\d+)?\n"
     ),
+    "charge_and_multiplicity": r" Charge = {1,2}(-?\d) Multiplicity = (\d)",
 }
+
+# other options:
+# homo-lumo gap, polarizability, dipole moment, mulliken and APT partial charges, occupancy
 
 
 COMPILED_PATTERNS = {
