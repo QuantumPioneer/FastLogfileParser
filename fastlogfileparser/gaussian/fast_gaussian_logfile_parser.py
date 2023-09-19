@@ -36,7 +36,7 @@ def fast_gaussian_logfile_parser(
                 if pattern_name == "wavefunction_energy" and not is_wavefunction_method:
                     continue
                 result = re.findall(compiled_pattern, logfile_text)
-                if not result:
+                if not result and not pattern_name == "normal_termination":
                     result = None
                 else:
                     # post-process where required

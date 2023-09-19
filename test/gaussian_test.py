@@ -10,7 +10,7 @@ def test_fast_gaussian_logfile_parser():
 
     file = os.path.join(os.path.dirname(__file__), "data", "rxn_11.log")
     job_1, job_2, job_3 = fast_gaussian_logfile_parser(file)
-    print(job_3["charge_and_multiplicity"])
+    print(job_1["normal_termination"])
     assert job_1["gibbs"] == 0.453491
     assert job_2["gibbs"] == 0.377958
     assert job_3["gibbs"] == -57.116221
@@ -38,8 +38,8 @@ def test_fast_gaussian_logfile_parser():
     assert job_1["number_of_optimization_steps"] == 18
     assert job_2["number_of_optimization_steps"] == 9
     assert job_3["number_of_optimization_steps"] == 31
-    assert job_1["recovered_energy"] == None
-    assert job_2["recovered_energy"] == None
+    assert job_1["recovered_energy"] is None
+    assert job_2["recovered_energy"] is None
     assert job_3["recovered_energy"][0] == -57.3069045667
     assert job_3["recovered_energy"][1] == -57.3139032763
     assert job_3["recovered_energy"][-2] == -57.328008209

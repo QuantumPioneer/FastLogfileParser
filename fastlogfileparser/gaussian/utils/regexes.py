@@ -47,6 +47,7 @@ RETRIEVAL_PATTERNS = {
         r"(?:\s+\d+\s+\d+\s+\d+)?\n"
     ),
     "charge_and_multiplicity": r" Charge = {1,2}(-?\d) Multiplicity = (\d)",
+    "normal_termination": r" Normal termination ",
 }
 
 # other options:
