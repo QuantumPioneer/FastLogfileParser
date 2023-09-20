@@ -10,7 +10,15 @@ def test_fast_gaussian_logfile_parser():
 
     file = os.path.join(os.path.dirname(__file__), "data", "rxn_11.log")
     job_1, job_2, job_3 = fast_gaussian_logfile_parser(file)
-    print(job_1["normal_termination"])
+    assert job_1["normal_termination"] == True
+    assert job_2["normal_termination"] == True
+    assert job_3["normal_termination"] == True
+    assert job_1["route_section"] == 'P opt=(ModRedundant,calcall,maxcycle=64,noeig,nomicro) scf=(xqc) iop(7/33=1) iop(2/9=2000) iop(7/127=-99) iop(8/117=-99) am1'
+    assert job_2["route_section"] == 'P opt=(ModRedundant,ts,calcall,maxcycle=64,noeig,nomicro) scf=(xqc) iop(7/33=1) iop(2/9=2000) geom=check guess=mix pm7'
+    assert job_3["route_section"] == 'P opt=(ts,calcall,maxcycle=90,noeig,nomicro,cartesian) scf=(xqc) iop(7/33=1) iop(2/9=2000) geom=check guess=mix external="/home/gridsan/groups/RMG/Software/RDMC-main/rdmc/external/xtb_tools/xtb_gaussian.pl --gfn 2 -P"'
+    assert job_1["charge_and_multiplicity"] == [0, 2]
+    assert job_2["charge_and_multiplicity"] == [0, 2]
+    assert job_3["charge_and_multiplicity"] == [0, 2]
     assert job_1["gibbs"] == 0.453491
     assert job_2["gibbs"] == 0.377958
     assert job_3["gibbs"] == -57.116221
