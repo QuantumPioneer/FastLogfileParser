@@ -8,7 +8,7 @@ def crush_ginc_block(opened_file):
     in_ginc_block = False
     for line in opened_file:
         # starting a GINC block
-        if line[:12] == " 1\\1\\GINC-C-":
+        if line[:9] == " 1\\1\\GINC":
             in_ginc_block = True
         # strip last two characters
         elif in_ginc_block:
