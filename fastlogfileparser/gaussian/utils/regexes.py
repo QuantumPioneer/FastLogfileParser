@@ -8,7 +8,7 @@ RETRIEVAL_PATTERNS = {
     "zpe": r"ZeroPoint=(-?\d+.\d+)",
     "wavefunction_energy": r"[CBSQB3|MP2|G4|G3|G2|CCSD]=(-?\d+.\d+)",
     "recovered_energy": r" Recovered energy=\s+(-?\d+.\d+)",
-    "scf": r"(?<! >>>>>>>>>> Convergence criterion not met\.\n) SCF Done:  E\(.*\) =  (\d\.\d{12})",
+    "scf": r"(?<! >>>>>>>>>> Convergence criterion not met\.\n) SCF Done:  E\(.*\) =  -?(\d+\.\d+)",
     "route_section": r"#([A-Za-z\d\,=\(\)\-\/ \"\.\_]*)",
     "cpu_time": r" Job cpu time: \s+(\d+ days\s+\d+ hours\s+\d+ minutes\s+\d+\.?\d+ seconds)",
     "wall_time": r" Elapsed time: \s+(\d+ days\s+\d+ hours\s+\d+ minutes\s+\d+\.?\d+ seconds)",
