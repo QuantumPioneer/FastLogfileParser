@@ -25,9 +25,9 @@ def test_fast_gaussian_logfile_parser():
     assert job_1["e0_zpe"] == 0.501018
     assert job_2["e0_zpe"] == 0.424827
     assert job_3["e0_zpe"] == -57.066865
-    assert job_1["zpe"] == 0.2756248
-    assert job_2["zpe"] == 0.2546919
-    assert job_3["zpe"] == 0.2611432
+    assert job_1["zpe_per_atom"] == 0.2756248
+    assert job_2["zpe_per_atom"] == 0.2546919
+    assert job_3["zpe_per_atom"] == 0.2611432
     assert job_1["e0_h"] == 0.519054
     assert job_2["e0_h"] == 0.442973
     assert job_3["e0_h"] == -57.047106
@@ -429,7 +429,7 @@ def test_fast_gaussian_logfile_parser_3():
     assert job["e0_zpe"] == -402.682224
     assert job["e0_h"] == -402.672907 
     assert job["hf"] == -402.8558329
-    assert job["zpe"] == 0.1736092 # (Hartree/Particle)
+    assert job["zpe_per_atom"] == 0.1736092 # (Hartree/Particle)
     assert job["recovered_energy"] == None
     assert job["frequencies"] == [72.9396, 96.8683, 192.394, 207.9457, 272.2394, 342.6685, 368.4425, 401.0024, 478.0251, 528.4524, 687.6401, 778.694, 798.6369, 827.0999, 882.09, 924.1866, 955.4838, 958.2687, 977.133, 991.5038, 1001.9804, 1032.0464, 1048.1294, 1069.6775, 1100.2759, 1113.9326, 1123.2531, 1154.0342, 1189.903, 1214.0463, 1279.4557, 1301.6757, 1325.9641, 1368.4872, 1380.3865, 1395.7035, 1399.1188, 1437.375, 1467.5414, 1475.764, 1511.4812, 1522.2826, 1733.6455, 2994.9671, 3017.6716, 3048.9327, 3058.5047, 3119.3761, 3137.8986, 3170.6442, 3217.5738, 3236.2974, 3260.4636, 3555.4258]
     assert len(job["frequencies"]) == 54

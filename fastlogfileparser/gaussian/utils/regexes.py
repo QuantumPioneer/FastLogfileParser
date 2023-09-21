@@ -5,7 +5,7 @@ RETRIEVAL_PATTERNS = {
     "e0_zpe": r" Sum of electronic and zero-point Energies=\s+(-?\d+\.\d+)",  # Gibbs free energy at 0K, G(0K) = e0 + ZPE
     "e0_h": r" Sum of electronic and thermal Enthalpies=\s+(-?\d+\.\d+)",  # Enthalpy at 298K, H(298K) = e0 + H_corr
     "hf": r"HF=(-?\d+.\d+)",  # equals e0 only for non-wave function methods e.g., DFT, semi-empirical
-    "zpe": r"ZeroPoint=(-?\d+.\d+)",
+    "zpe_per_atom": r"ZeroPoint=(-?\d+.\d+)", # per atom basis in Gaussian (Hartree/Particle)
     "wavefunction_energy": r"[CBSQB3|MP2|G4|G3|G2|CCSD]=(-?\d+.\d+)",
     "recovered_energy": r" Recovered energy=\s+(-?\d+.\d+)",
     "scf": r"(?<! >>>>>>>>>> Convergence criterion not met\.\n) SCF Done:  E\(.*\) =  -?(\d+\.\d+)",
