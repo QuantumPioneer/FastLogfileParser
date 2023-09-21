@@ -32,3 +32,6 @@ print(job_1.keys())
 See `comparison.py` to run for yourself (install with `pip install .[demos]`), but in short:
  - compared to `cclib`, `fastlogfileparser` is ~10x as fast and returns all values for intermediate steps in simulation (but `cclib` supports retrieving a different set of values)
  - compared to `ase`, `fastlogfileparser` is ~2x slower, but returns _far more_ values and in a more readily accessible format
+
+## TODO
+ - Gaussian: improve parsing of failed jobs: route, failed msg, etc.

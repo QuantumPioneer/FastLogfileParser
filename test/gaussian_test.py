@@ -8,14 +8,28 @@ def test_fast_gaussian_logfile_parser():
     Test parser using a log file with gaussian LINK of three consecutive semi-empirical level jobs AM1, PM7, XTB
     """
 
-    file = os.path.join(os.path.dirname(__file__), "data", "ts_opt_three_step_semi_all_success.log")
+    file = os.path.join(
+        os.path.dirname(__file__), "data", "ts_opt_three_step_semi_all_success.log"
+    )
     job_1, job_2, job_3 = fast_gaussian_logfile_parser(file)
-    assert job_1["normal_termination"] == True
-    assert job_2["normal_termination"] == True
-    assert job_3["normal_termination"] == True
-    assert job_1["route_section"] == 'P opt=(ModRedundant,calcall,maxcycle=64,noeig,nomicro) scf=(xqc) iop(7/33=1) iop(2/9=2000) iop(7/127=-99) iop(8/117=-99) am1'
-    assert job_2["route_section"] == 'P opt=(ModRedundant,ts,calcall,maxcycle=64,noeig,nomicro) scf=(xqc) iop(7/33=1) iop(2/9=2000) geom=check guess=mix pm7'
-    assert job_3["route_section"] == 'P opt=(ts,calcall,maxcycle=90,noeig,nomicro,cartesian) scf=(xqc) iop(7/33=1) iop(2/9=2000) geom=check guess=mix external="/home/gridsan/groups/RMG/Software/RDMC-main/rdmc/external/xtb_tools/xtb_gaussian.pl --gfn 2 -P"'
+    assert job_1["normal_termination"] is True
+    assert job_2["normal_termination"] is True
+    assert job_3["normal_termination"] is True
+    assert (
+        job_1["route_section"]
+        == "P opt=(ModRedundant,calcall,maxcycle=64,noeig,nomicro) scf=(xqc) iop(7/33=1) iop(2/9=2000) iop(7/127=-99) iop(8/117=-99) am1"
+    )
+    assert (
+        job_2["route_section"]
+        == "P opt=(ModRedundant,ts,calcall,maxcycle=64,noeig,nomicro) scf=(xqc) iop(7/33=1) iop(2/9=2000) geom=check guess=mix pm7"
+    )
+    assert (
+        job_3["route_section"]
+        == (
+            'P opt=(ts,calcall,maxcycle=90,noeig,nomicro,cartesian) scf=(xqc) iop(7/33=1) iop(2/9=2000) geom=check guess=mix external='
+            '"/home/gridsan/groups/RMG/Software/RDMC-main/rdmc/external/xtb_tools/xtb_gaussian.pl --gfn 2 -P"'
+        )
+    )
     assert job_1["charge_and_multiplicity"] == [0, 2]
     assert job_2["charge_and_multiplicity"] == [0, 2]
     assert job_3["charge_and_multiplicity"] == [0, 2]
@@ -59,105 +73,107 @@ def test_fast_gaussian_logfile_parser():
     assert job_2["frequencies"][1] == -65.2439
     assert job_2["frequencies"][-2] == 2772.4802
     assert len(job_2["frequencies"]) == 99
-    assert job_3["frequencies"] == [-1070.248,
-                                        21.2558,
-                                        34.2835,
-                                        38.4794,
-                                        50.8615,
-                                        66.318,
-                                        72.0175,
-                                        104.4354,
-                                        126.2533,
-                                        178.164,
-                                        190.6464,
-                                        201.5766,
-                                        230.1125,
-                                        244.0453,
-                                        258.3915,
-                                        288.0747,
-                                        319.5283,
-                                        331.1254,
-                                        337.4849,
-                                        362.0772,
-                                        376.8511,
-                                        380.6593,
-                                        419.7345,
-                                        480.4958,
-                                        483.6609,
-                                        516.5783,
-                                        523.9647,
-                                        539.752,
-                                        560.1229,
-                                        593.1202,
-                                        618.2125,
-                                        629.2787,
-                                        665.2088,
-                                        680.6649,
-                                        699.5886,
-                                        710.2207,
-                                        768.6965,
-                                        769.6295,
-                                        825.1324,
-                                        858.965,
-                                        876.7569,
-                                        896.6266,
-                                        912.0599,
-                                        913.4817,
-                                        918.0845,
-                                        923.8787,
-                                        931.8196,
-                                        1007.5661,
-                                        1052.9469,
-                                        1060.3788,
-                                        1065.9656,
-                                        1077.552,
-                                        1092.4222,
-                                        1099.997,
-                                        1108.2718,
-                                        1122.1112,
-                                        1129.8856,
-                                        1145.5331,
-                                        1160.5772,
-                                        1167.1457,
-                                        1177.2996,
-                                        1197.0858,
-                                        1204.0635,
-                                        1241.2318,
-                                        1269.6735,
-                                        1278.369,
-                                        1285.7483,
-                                        1298.9741,
-                                        1343.8235,
-                                        1366.2008,
-                                        1380.2288,
-                                        1392.7438,
-                                        1400.2953,
-                                        1420.7035,
-                                        1433.8104,
-                                        1437.2969,
-                                        1466.1181,
-                                        1472.7239,
-                                        1480.3023,
-                                        1492.9849,
-                                        1561.163,
-                                        1584.5292,
-                                        1586.8818,
-                                        1598.23,
-                                        1676.3884,
-                                        2926.8699,
-                                        2958.67,
-                                        2992.993,
-                                        3055.6369,
-                                        3071.0991,
-                                        3078.5004,
-                                        3090.5944,
-                                        3099.3502,
-                                        3103.0384,
-                                        3103.9318,
-                                        3108.6467,
-                                        3144.2251,
-                                        3148.1604,
-                                        3481.313]
+    assert job_3["frequencies"] == [
+        -1070.248,
+        21.2558,
+        34.2835,
+        38.4794,
+        50.8615,
+        66.318,
+        72.0175,
+        104.4354,
+        126.2533,
+        178.164,
+        190.6464,
+        201.5766,
+        230.1125,
+        244.0453,
+        258.3915,
+        288.0747,
+        319.5283,
+        331.1254,
+        337.4849,
+        362.0772,
+        376.8511,
+        380.6593,
+        419.7345,
+        480.4958,
+        483.6609,
+        516.5783,
+        523.9647,
+        539.752,
+        560.1229,
+        593.1202,
+        618.2125,
+        629.2787,
+        665.2088,
+        680.6649,
+        699.5886,
+        710.2207,
+        768.6965,
+        769.6295,
+        825.1324,
+        858.965,
+        876.7569,
+        896.6266,
+        912.0599,
+        913.4817,
+        918.0845,
+        923.8787,
+        931.8196,
+        1007.5661,
+        1052.9469,
+        1060.3788,
+        1065.9656,
+        1077.552,
+        1092.4222,
+        1099.997,
+        1108.2718,
+        1122.1112,
+        1129.8856,
+        1145.5331,
+        1160.5772,
+        1167.1457,
+        1177.2996,
+        1197.0858,
+        1204.0635,
+        1241.2318,
+        1269.6735,
+        1278.369,
+        1285.7483,
+        1298.9741,
+        1343.8235,
+        1366.2008,
+        1380.2288,
+        1392.7438,
+        1400.2953,
+        1420.7035,
+        1433.8104,
+        1437.2969,
+        1466.1181,
+        1472.7239,
+        1480.3023,
+        1492.9849,
+        1561.163,
+        1584.5292,
+        1586.8818,
+        1598.23,
+        1676.3884,
+        2926.8699,
+        2958.67,
+        2992.993,
+        3055.6369,
+        3071.0991,
+        3078.5004,
+        3090.5944,
+        3099.3502,
+        3103.0384,
+        3103.9318,
+        3108.6467,
+        3144.2251,
+        3148.1604,
+        3481.313,
+    ]
     assert len(job_3["frequencies"]) == 99
     assert len(job_1["std_forces"]) == 19
     assert len(job_1["std_forces"][0]) == 35
@@ -360,7 +376,8 @@ def test_fast_gaussian_logfile_parser():
     assert len(job_1["frequency_modes"]) == 99
     assert len(job_2["frequency_modes"]) == 99
     assert len(job_3["frequency_modes"]) == 99
-    assert job_3["frequency_modes"][-1] == [[1.0, 1.0, 0.55, 0.78, -0.3],
+    assert job_3["frequency_modes"][-1] == [
+        [1.0, 1.0, 0.55, 0.78, -0.3],
         [2.0, 8.0, -0.0, 0.0, 0.0],
         [3.0, 8.0, -0.03, -0.05, 0.02],
         [4.0, 7.0, -0.0, -0.0, 0.0],
@@ -394,57 +411,133 @@ def test_fast_gaussian_logfile_parser():
         [32.0, 1.0, 0.0, 0.0, 0.0],
         [33.0, 1.0, 0.0, 0.0, 0.0],
         [34.0, 1.0, 0.0, -0.0, -0.0],
-        [35.0, 1.0, -0.0, 0.0, 0.0]]
-    
+        [35.0, 1.0, -0.0, 0.0, 0.0],
+    ]
 
-# TODO: parse useful info from a failed jobs: route, failed msg, etc. 
+
 def test_fast_gaussian_logfile_parser_2():
     """
-    Test parser using a gaussian log file for a DFT optimization that failed. 
+    Test parser using a gaussian log file for a DFT optimization that failed.
     """
 
     file = os.path.join(os.path.dirname(__file__), "data", "non_ts_opt_failed.log")
     job = fast_gaussian_logfile_parser(file)[0]
-    assert job["normal_termination"] == False
+    assert job["normal_termination"] is False
     assert job["charge_and_multiplicity"] == [0, 1]
-    assert len(job["scf"]) == job['number_of_optimization_steps']
+    assert len(job["scf"]) == job["number_of_optimization_steps"]
     # assert job["route_section"] == None
-    
-        
+
+
 def test_fast_gaussian_logfile_parser_3():
     """
-    Test parser using a gaussian log file for a DFT optimization that succeed. 
+    Test parser using a gaussian log file for a DFT optimization that succeed.
     """
 
     file = os.path.join(os.path.dirname(__file__), "data", "non_ts_opt_success.log")
     job = fast_gaussian_logfile_parser(file)[0]
-    assert job["normal_termination"] == True
+    assert job["normal_termination"] is True
     assert job["charge_and_multiplicity"] == [0, 1]
-    assert job["route_section"] == 'P opt=(calcfc,maxcycle=128,noeig,nomicro,cartesian) freq scf=(xqc) iop(7/33=1) iop(2/9=2000) guess=mix wb97xd/def2svp'
+    assert (
+        job["route_section"]
+        == "P opt=(calcfc,maxcycle=128,noeig,nomicro,cartesian) freq scf=(xqc) iop(7/33=1) iop(2/9=2000) guess=mix wb97xd/def2svp"
+    )
     assert len(job["scf"]) == 26
-    assert job["scf"] == [402.853361198, 402.854751059, 402.85564611, 402.855063686, 402.855709972, 402.855740995, 
-                          402.855798573, 402.855811324, 402.855831372, 402.855832066, 402.855832694, 402.855832867, 
-                          402.855832932, 402.855832897, 402.855832943, 402.855832934, 402.855832948, 402.855832932, 
-                          402.855832948, 402.855832934, 402.855832949, 402.855832927, 402.855832949, 402.855832924, 
-                          402.855832948, 402.855832948]
+    assert job["scf"] == [
+        402.853361198,
+        402.854751059,
+        402.85564611,
+        402.855063686,
+        402.855709972,
+        402.855740995,
+        402.855798573,
+        402.855811324,
+        402.855831372,
+        402.855832066,
+        402.855832694,
+        402.855832867,
+        402.855832932,
+        402.855832897,
+        402.855832943,
+        402.855832934,
+        402.855832948,
+        402.855832932,
+        402.855832948,
+        402.855832934,
+        402.855832949,
+        402.855832927,
+        402.855832949,
+        402.855832924,
+        402.855832948,
+        402.855832948,
+    ]
     assert job["cpu_time"] == 4284.2
     assert job["wall_time"] == 293.4
     assert job["gibbs"] == -402.715409
     assert job["e0_zpe"] == -402.682224
-    assert job["e0_h"] == -402.672907 
+    assert job["e0_h"] == -402.672907
     assert job["hf"] == -402.8558329
-    assert job["zpe_per_atom"] == 0.1736092 # (Hartree/Particle)
-    assert job["recovered_energy"] == None
-    assert job["frequencies"] == [72.9396, 96.8683, 192.394, 207.9457, 272.2394, 342.6685, 368.4425, 401.0024, 
-                                  478.0251, 528.4524, 687.6401, 778.694, 798.6369, 827.0999, 882.09, 924.1866, 
-                                  955.4838, 958.2687, 977.133, 991.5038, 1001.9804, 1032.0464, 1048.1294, 1069.6775, 
-                                  1100.2759, 1113.9326, 1123.2531, 1154.0342, 1189.903, 1214.0463, 1279.4557, 1301.6757, 
-                                  1325.9641, 1368.4872, 1380.3865, 1395.7035, 1399.1188, 1437.375, 1467.5414, 1475.764, 
-                                  1511.4812, 1522.2826, 1733.6455, 2994.9671, 3017.6716, 3048.9327, 3058.5047, 3119.3761, 
-                                  3137.8986, 3170.6442, 3217.5738, 3236.2974, 3260.4636, 3555.4258]
+    assert job["zpe_per_atom"] == 0.1736092  # (Hartree/Particle)
+    assert job["recovered_energy"] is None
+    assert job["frequencies"] == [
+        72.9396,
+        96.8683,
+        192.394,
+        207.9457,
+        272.2394,
+        342.6685,
+        368.4425,
+        401.0024,
+        478.0251,
+        528.4524,
+        687.6401,
+        778.694,
+        798.6369,
+        827.0999,
+        882.09,
+        924.1866,
+        955.4838,
+        958.2687,
+        977.133,
+        991.5038,
+        1001.9804,
+        1032.0464,
+        1048.1294,
+        1069.6775,
+        1100.2759,
+        1113.9326,
+        1123.2531,
+        1154.0342,
+        1189.903,
+        1214.0463,
+        1279.4557,
+        1301.6757,
+        1325.9641,
+        1368.4872,
+        1380.3865,
+        1395.7035,
+        1399.1188,
+        1437.375,
+        1467.5414,
+        1475.764,
+        1511.4812,
+        1522.2826,
+        1733.6455,
+        2994.9671,
+        3017.6716,
+        3048.9327,
+        3058.5047,
+        3119.3761,
+        3137.8986,
+        3170.6442,
+        3217.5738,
+        3236.2974,
+        3260.4636,
+        3555.4258,
+    ]
     assert len(job["frequencies"]) == 54
     assert len(job["std_forces"]) == 25
-    assert job["std_forces"][0] == [[1.0, 6.0, 0.007904782, 0.007077733, -0.000768348],
+    assert job["std_forces"][0] == [
+        [1.0, 6.0, 0.007904782, 0.007077733, -0.000768348],
         [2.0, 6.0, 0.002319393, -0.001730758, 0.002172075],
         [3.0, 6.0, -0.001626312, 0.008349336, -0.002861984],
         [4.0, 6.0, -0.004130694, 0.0053082, 0.006513983],
@@ -463,8 +556,10 @@ def test_fast_gaussian_logfile_parser_3():
         [17.0, 1.0, 0.004330705, 0.001285126, 0.001473196],
         [18.0, 1.0, -0.006024712, -0.001405932, -0.007458332],
         [19.0, 1.0, 0.008439219, 0.0028354, -0.001547936],
-        [20.0, 1.0, 0.006090055, -0.000968801, -0.002036544]]
-    assert job["std_forces"][-1] == [[1.0, 6.0, 1.736e-06, -4.121e-06, -1.746e-06],
+        [20.0, 1.0, 0.006090055, -0.000968801, -0.002036544],
+    ]
+    assert job["std_forces"][-1] == [
+        [1.0, 6.0, 1.736e-06, -4.121e-06, -1.746e-06],
         [2.0, 6.0, 1.6e-07, -1.898e-06, -1.1e-07],
         [3.0, 6.0, 5.23e-07, -1.106e-06, -7.55e-07],
         [4.0, 6.0, 1.903e-06, 2.167e-06, -3.055e-06],
@@ -483,9 +578,11 @@ def test_fast_gaussian_logfile_parser_3():
         [17.0, 1.0, -6.28e-07, 6.54e-07, 1.203e-06],
         [18.0, 1.0, -4.91e-07, -4.6e-08, 7.1e-07],
         [19.0, 1.0, -9.25e-07, 6.29e-07, 7.72e-07],
-        [20.0, 1.0, -8.49e-07, -1.023e-06, 1.348e-06]]
+        [20.0, 1.0, -8.49e-07, -1.023e-06, 1.348e-06],
+    ]
     assert len(job["std_xyz"]) == 27
-    assert job["std_xyz"][0] == [[1.0, 6.0, 0.0, 2.17146, 1.203793, -0.202192],
+    assert job["std_xyz"][0] == [
+        [1.0, 6.0, 0.0, 2.17146, 1.203793, -0.202192],
         [2.0, 6.0, 0.0, 1.17511, 0.076574, -0.062046],
         [3.0, 6.0, 0.0, -0.207337, 0.370451, -0.658537],
         [4.0, 6.0, 0.0, -1.01882, 1.296816, 0.198804],
@@ -504,8 +601,10 @@ def test_fast_gaussian_logfile_parser_3():
         [17.0, 1.0, 0.0, -3.047676, -0.785934, -0.71086],
         [18.0, 1.0, 0.0, 2.037482, -0.692555, 1.830556],
         [19.0, 1.0, 0.0, 0.333186, -1.245759, 1.506709],
-        [20.0, 1.0, 0.0, 1.058421, -1.886332, -0.672677]]
-    assert job["std_xyz"][-1] == [[1.0, 6.0, 0.0, 2.167612, 1.223055, -0.194553],
+        [20.0, 1.0, 0.0, 1.058421, -1.886332, -0.672677],
+    ]
+    assert job["std_xyz"][-1] == [
+        [1.0, 6.0, 0.0, 2.167612, 1.223055, -0.194553],
         [2.0, 6.0, 0.0, 1.18666, 0.084602, -0.049209],
         [3.0, 6.0, 0.0, -0.199375, 0.366547, -0.634572],
         [4.0, 6.0, 0.0, -1.038503, 1.298339, 0.199282],
@@ -524,9 +623,11 @@ def test_fast_gaussian_logfile_parser_3():
         [17.0, 1.0, 0.0, -3.036919, -0.814141, -0.761121],
         [18.0, 1.0, 0.0, 2.048995, -0.72818, 1.84933],
         [19.0, 1.0, 0.0, 0.330741, -1.281243, 1.466248],
-        [20.0, 1.0, 0.0, 1.010553, -1.83645, -0.667129]]
+        [20.0, 1.0, 0.0, 1.010553, -1.83645, -0.667129],
+    ]
     assert job["max_steps"] == 120
-    assert job["frequency_modes"][0] == [[1.0, 6.0, -0.08, 0.06, 0.18],
+    assert job["frequency_modes"][0] == [
+        [1.0, 6.0, -0.08, 0.06, 0.18],
         [2.0, 6.0, -0.02, -0.02, 0.01],
         [3.0, 6.0, 0.0, -0.05, -0.04],
         [4.0, 6.0, 0.0, 0.06, -0.17],
@@ -545,8 +646,10 @@ def test_fast_gaussian_logfile_parser_3():
         [17.0, 1.0, -0.02, -0.15, 0.24],
         [18.0, 1.0, -0.03, -0.15, -0.04],
         [19.0, 1.0, 0.02, -0.22, -0.15],
-        [20.0, 1.0, 0.11, 0.03, -0.17]]
-    assert job["frequency_modes"][-1] == [[1.0, 6.0, 0.0, 0.0, -0.0],
+        [20.0, 1.0, 0.11, 0.03, -0.17],
+    ]
+    assert job["frequency_modes"][-1] == [
+        [1.0, 6.0, 0.0, 0.0, -0.0],
         [2.0, 6.0, -0.0, 0.0, 0.0],
         [3.0, 6.0, -0.0, 0.0, -0.0],
         [4.0, 6.0, -0.0, -0.0, -0.0],
@@ -565,8 +668,8 @@ def test_fast_gaussian_logfile_parser_3():
         [17.0, 1.0, 0.0, 0.0, 0.0],
         [18.0, 1.0, 0.01, 0.0, 0.01],
         [19.0, 1.0, 0.01, 0.0, -0.0],
-        [20.0, 1.0, 0.69, 0.58, 0.42]]
+        [20.0, 1.0, 0.69, 0.58, 0.42],
+    ]
     assert len(job["frequency_modes"]) == 54
     assert job["number_of_atoms"] == 20
-    assert job["number_of_optimization_steps"] == 26 
-    
+    assert job["number_of_optimization_steps"] == 26
