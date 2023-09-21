@@ -8,7 +8,7 @@ def test_fast_gaussian_logfile_parser():
     Test parser using a log file with gaussian LINK of three consecutive semi-empirical level jobs AM1, PM7, XTB
     """
 
-    file = os.path.join(os.path.dirname(__file__), "data", "rxn_11.log")
+    file = os.path.join(os.path.dirname(__file__), "data", "ts_opt_three_step_semi_all_success.log")
     job_1, job_2, job_3 = fast_gaussian_logfile_parser(file)
     assert job_1["normal_termination"] == True
     assert job_2["normal_termination"] == True
