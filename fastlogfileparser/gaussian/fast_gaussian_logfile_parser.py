@@ -5,16 +5,19 @@ import re
 import warnings
 from collections import namedtuple
 
-from .utils.regexes import COMPILED_PATTERNS
+from .utils.regexes import COMPILED_PATTERNS, METADATA, DATA
 from .utils.preprocessing import crush_ginc_block, split_composite_job
 from .utils.postprocessing import POSTPROCESSING_FUNCTIONS
 
-FIELDS = COMPILED_PATTERNS.keys()
+METADATA_FIELDS = tuple(METADATA.keys())
+DATA_FIELDS = tuple(DATA.keys())
+ALL_FIELDS = DATA_FIELDS + METADATA_FIELDS
 
 
 def fast_gaussian_logfile_parser(
     target_file: str,
     is_wavefunction_method: bool = False,
+    get: tuple = ALL_FIELDS,
     verbose: int = 0,
 ):
     """Parse Gaussian Logfile, but Fast-ly
@@ -36,6 +39,10 @@ def fast_gaussian_logfile_parser(
         for logfile_text in preprocessed_text_array:
             out_dict = {}
             for pattern_name, compiled_pattern in COMPILED_PATTERNS.items():
+                # skip fields not requested by user
+                if pattern_name not in get:
+                    continue
+                # skip wavefunction regex for non-wavefunction methods
                 if pattern_name == "wavefunction_energy" and not is_wavefunction_method:
                     continue
                 result = re.findall(compiled_pattern, logfile_text)
@@ -60,10 +67,11 @@ def fast_gaussian_logfile_parser(
                                 )
                             result = None
                 out_dict[pattern_name] = result
-            out_dict["number_of_atoms"] = len(out_dict["std_xyz"][0])
-            # remove 1 for the initial geometry printout
-            out_dict["number_of_optimization_steps"] = len(out_dict["std_xyz"]) - 1
-            out_tuples.append(namedtuple('x', out_dict.keys())(*out_dict.values()))
+            if "std_xyz" in get:
+                out_dict["number_of_atoms"] = len(out_dict["std_xyz"][0])
+                # remove 1 for the initial geometry printout
+                out_dict["number_of_optimization_steps"] = len(out_dict["std_xyz"]) - 1
+            out_tuples.append(namedtuple("job_result", out_dict.keys())(*out_dict.values()))
 
     # debug info
     if verbose > 2:

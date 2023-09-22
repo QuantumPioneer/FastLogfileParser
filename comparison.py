@@ -4,6 +4,7 @@ import os
 from ase.io.gaussian import read_gaussian_out
 from cclib.parser import Gaussian
 from fastlogfileparser.gaussian import fast_gaussian_logfile_parser as fglp
+from fastlogfileparser.gaussian import DATA_FIELDS
 
 
 FNAME = "test/data/ts_opt_three_step_semi_all_success.log"
@@ -22,7 +23,7 @@ def timeit(func):
 
 @timeit
 def test_fglp():
-    job_1, job_2, job_3 = fglp(FNAME)
+    job_1, job_2, job_3 = fglp(FNAME, get=("gibbs", "scf"))
     print("Per-job free energy:", job_1.gibbs, job_2.gibbs, job_3.gibbs)
     print("Total Energy (eV)", job_1.scf[-1])
 

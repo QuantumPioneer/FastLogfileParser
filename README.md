@@ -31,6 +31,11 @@ print(job_1._fields)
 from fastlogfileparser.gaussian import FIELDS
 ```
 
+Fast logfile parser is fastest when you ask it to retrieve only the fields you want, i.e.:
+```python
+job_1, job_2, job_3 = fglp(FNAME, get=("gibbs", "scf"))
+```
+
 #### Retrieved Values
 
 | Quantity | Key | Type | Frequency |
@@ -40,8 +45,13 @@ from fastlogfileparser.gaussian import FIELDS
 | Enthalpy at 298K | `e0_h` | float | 1/job |
 | E0 $^1$ | `E0` | float | 1/job |
 | Per-atom Zero Point Energy | `zpe_per_atom` | float | 1/job |
+| Standardized xyz coords | `std_xyz` | list[float] | 1/step/job |
+| ... | ... | ... | ... | 
+| Number of Atoms $^2$ | `number_of_atoms` | int | 1/job |
+| Number of Optimization Steps $^2$ | `number_of_optimization_steps` | int | 1/job |
 
-$1$ equals E0 only for non-wavefunction methods
+$1$ equals E0 only for non-wavefunction methods <br>
+$2$ requires `std_xyz` to be parsed to find these values <br>
 
 ## How much fast-ly-er?
 `FastLogfileParser` uses REGEX and only REGEX to retrieve data from logfiles, spending as much time in Python's excellent C-based REGEX library as possible.
@@ -49,4 +59,3 @@ $1$ equals E0 only for non-wavefunction methods
 See `comparison.py` to run for yourself (install with `pip install .[demos]`), but in short:
  - compared to `cclib`, `fastlogfileparser` is ~10x as fast and returns all values for intermediate steps in simulation (but `cclib` supports retrieving a different set of values)
  - compared to `ase`, `fastlogfileparser` is ~2x slower, but returns _far more_ values and in a more readily accessible format
- 
