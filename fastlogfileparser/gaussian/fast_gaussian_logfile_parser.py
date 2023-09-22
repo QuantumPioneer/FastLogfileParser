@@ -3,6 +3,7 @@
 # using exclusively regular expressions and reading the file only once.
 import re
 import warnings
+from collections import namedtuple
 
 from .utils.regexes import COMPILED_PATTERNS
 from .utils.preprocessing import crush_ginc_block, split_composite_job
@@ -24,7 +25,7 @@ def fast_gaussian_logfile_parser(
     Returns:
         dict: kvp of logfile contents, one per job
     """
-    out_dicts = []
+    out_tuples = []
     # get the text out of the logfile
     with open(target_file, "r") as file:
         crushed_text = crush_ginc_block(file)
@@ -60,7 +61,7 @@ def fast_gaussian_logfile_parser(
             out_dict["number_of_atoms"] = len(out_dict["std_xyz"][0])
             # remove 1 for the initial geometry printout
             out_dict["number_of_optimization_steps"] = len(out_dict["std_xyz"]) - 1
-            out_dicts.append(out_dict)
+            out_tuples.append(namedtuple('x', out_dict.keys())(*out_dict.values()))
 
     # debug info
     if verbose > 2:
@@ -69,4 +70,4 @@ def fast_gaussian_logfile_parser(
         pp = pprint.PrettyPrinter(depth=4)
         pp.pprint(out_dict)
 
-    return (*out_dicts,)
+    return (*out_tuples,)

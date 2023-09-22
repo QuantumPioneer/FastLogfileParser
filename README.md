@@ -11,7 +11,9 @@ Install with `pip install fastlogfileparser` or `conda` (forthcoming!).
 ## Usage
 ### Gaussian
 
-There is a single function `fast_gaussian_logfile_parser` inside `fastlogfileparser.gaussian` which reads logfiles and returns the result as a dictionary:
+There is a single function `fast_gaussian_logfile_parser` inside `fastlogfileparser.gaussian` which reads logfiles and returns the result as a [namedtuple](https://docs.python.org/3/library/collections.html#collections.namedtuple) (which prevents accidentally changing the values and allows using `.` syntax to access them).
+
+#### Usage Example
 
 ```python
 from fastlogfileparser.gaussian import fast_gaussian_logfile_parser as fglp
@@ -20,11 +22,23 @@ from fastlogfileparser.gaussian import fast_gaussian_logfile_parser as fglp
 job_1, job_2, ..., job_n = fglp("data/result.log")
 
 # access results
-print(job_1["frequency_modes"])
+print(job_1.frequency_modes)
 
 # show all available values retrieved from the file
-print(job_1.keys())
+print(job_1._fields)
 ```
+
+#### Retrieved Values
+
+| Quantity | Key | Type | Frequency |
+| -------- | --- | ---- | --------- |
+| Gibbs free energy at 298K | `gibbs` | float | 1/job |
+| Gibbs free energy at 0K | `e0_zpe` | float | 1/job |
+| Enthalpy at 298K | `e0_h` | float | 1/job |
+| E0 $^1$ | `E0` | float | 1/job |
+| Per-atom Zero Point Energy | `zpe_per_atom` | float | 1/job |
+
+$1$ equals E0 only for non-wavefunction methods
 
 ## How much fast-ly-er?
 `FastLogfileParser` uses REGEX and only REGEX to retrieve data from logfiles, spending as much time in Python's excellent C-based REGEX library as possible.

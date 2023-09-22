@@ -12,68 +12,68 @@ def test_fast_gaussian_logfile_parser():
         os.path.dirname(__file__), "data", "ts_opt_three_step_semi_all_success.log"
     )
     job_1, job_2, job_3 = fast_gaussian_logfile_parser(file)
-    assert job_1["normal_termination"] is True
-    assert job_2["normal_termination"] is True
-    assert job_3["normal_termination"] is True
+    assert job_1.normal_termination is True
+    assert job_2.normal_termination is True
+    assert job_3.normal_termination is True
     assert (
-        job_1["route_section"]
+        job_1.route_section
         == "P opt=(ModRedundant,calcall,maxcycle=64,noeig,nomicro) scf=(xqc) iop(7/33=1) iop(2/9=2000) iop(7/127=-99) iop(8/117=-99) am1"
     )
     assert (
-        job_2["route_section"]
+        job_2.route_section
         == "P opt=(ModRedundant,ts,calcall,maxcycle=64,noeig,nomicro) scf=(xqc) iop(7/33=1) iop(2/9=2000) geom=check guess=mix pm7"
     )
     assert (
-        job_3["route_section"]
+        job_3.route_section
         == (
             'P opt=(ts,calcall,maxcycle=90,noeig,nomicro,cartesian) scf=(xqc) iop(7/33=1) iop(2/9=2000) geom=check guess=mix external='
             '"/home/gridsan/groups/RMG/Software/RDMC-main/rdmc/external/xtb_tools/xtb_gaussian.pl --gfn 2 -P"'
         )
     )
-    assert job_1["charge_and_multiplicity"] == [0, 2]
-    assert job_2["charge_and_multiplicity"] == [0, 2]
-    assert job_3["charge_and_multiplicity"] == [0, 2]
-    assert job_1["gibbs"] == 0.453491
-    assert job_2["gibbs"] == 0.377958
-    assert job_3["gibbs"] == -57.116221
-    assert job_1["e0_zpe"] == 0.501018
-    assert job_2["e0_zpe"] == 0.424827
-    assert job_3["e0_zpe"] == -57.066865
-    assert job_1["zpe_per_atom"] == 0.2756248
-    assert job_2["zpe_per_atom"] == 0.2546919
-    assert job_3["zpe_per_atom"] == 0.2611432
-    assert job_1["e0_h"] == 0.519054
-    assert job_2["e0_h"] == 0.442973
-    assert job_3["e0_h"] == -57.047106
-    assert job_1["hf"] == 0.2253936
-    assert job_2["hf"] == 0.1701352
-    assert job_3["hf"] == -57.3280082
-    assert job_1["cpu_time"] == 1729.1
-    assert job_2["cpu_time"] == 732.8
-    assert job_3["cpu_time"] == 450.9
-    assert job_1["wall_time"] == 133.3
-    assert job_2["wall_time"] == 57.3
-    assert job_3["wall_time"] == 67.0
-    assert job_1["number_of_atoms"] == 35
-    assert job_2["number_of_atoms"] == 35
-    assert job_3["number_of_atoms"] == 35
-    assert job_1["number_of_optimization_steps"] == 18
-    assert job_2["number_of_optimization_steps"] == 9
-    assert job_3["number_of_optimization_steps"] == 31
-    assert job_1["recovered_energy"] is None
-    assert job_2["recovered_energy"] is None
-    assert job_3["recovered_energy"][0] == -57.3069045667
-    assert job_3["recovered_energy"][1] == -57.3139032763
-    assert job_3["recovered_energy"][-2] == -57.328008209
-    assert job_3["recovered_energy"][-1] == -57.3280082435
-    assert len(job_3["recovered_energy"]) == 31
-    assert job_1["frequencies"][0] == -2302.4897
-    assert job_1["frequencies"][-1] == 3367.7609
-    assert len(job_1["frequencies"]) == 99
-    assert job_2["frequencies"][1] == -65.2439
-    assert job_2["frequencies"][-2] == 2772.4802
-    assert len(job_2["frequencies"]) == 99
-    assert job_3["frequencies"] == [
+    assert job_1.charge_and_multiplicity == [0, 2]
+    assert job_2.charge_and_multiplicity == [0, 2]
+    assert job_3.charge_and_multiplicity == [0, 2]
+    assert job_1.gibbs == 0.453491
+    assert job_2.gibbs == 0.377958
+    assert job_3.gibbs == -57.116221
+    assert job_1.e0_zpe == 0.501018
+    assert job_2.e0_zpe == 0.424827
+    assert job_3.e0_zpe == -57.066865
+    assert job_1.zpe_per_atom == 0.2756248
+    assert job_2.zpe_per_atom == 0.2546919
+    assert job_3.zpe_per_atom == 0.2611432
+    assert job_1.e0_h == 0.519054
+    assert job_2.e0_h == 0.442973
+    assert job_3.e0_h == -57.047106
+    assert job_1.hf == 0.2253936
+    assert job_2.hf == 0.1701352
+    assert job_3.hf == -57.3280082
+    assert job_1.cpu_time == 1729.1
+    assert job_2.cpu_time == 732.8
+    assert job_3.cpu_time == 450.9
+    assert job_1.wall_time == 133.3
+    assert job_2.wall_time == 57.3
+    assert job_3.wall_time == 67.0
+    assert job_1.number_of_atoms == 35
+    assert job_2.number_of_atoms == 35
+    assert job_3.number_of_atoms == 35
+    assert job_1.number_of_optimization_steps == 18
+    assert job_2.number_of_optimization_steps == 9
+    assert job_3.number_of_optimization_steps == 31
+    assert job_1.recovered_energy is None
+    assert job_2.recovered_energy is None
+    assert job_3.recovered_energy[0] == -57.3069045667
+    assert job_3.recovered_energy[1] == -57.3139032763
+    assert job_3.recovered_energy[-2] == -57.328008209
+    assert job_3.recovered_energy[-1] == -57.3280082435
+    assert len(job_3.recovered_energy) == 31
+    assert job_1.frequencies[0] == -2302.4897
+    assert job_1.frequencies[-1] == 3367.7609
+    assert len(job_1.frequencies) == 99
+    assert job_2.frequencies[1] == -65.2439
+    assert job_2.frequencies[-2] == 2772.4802
+    assert len(job_2.frequencies) == 99
+    assert job_3.frequencies == [
         -1070.248,
         21.2558,
         34.2835,
@@ -174,88 +174,88 @@ def test_fast_gaussian_logfile_parser():
         3148.1604,
         3481.313,
     ]
-    assert len(job_3["frequencies"]) == 99
-    assert len(job_1["std_forces"]) == 19
-    assert len(job_1["std_forces"][0]) == 35
-    assert job_1["std_forces"][0][0] == [
+    assert len(job_3.frequencies) == 99
+    assert len(job_1.std_forces) == 19
+    assert len(job_1.std_forces[0]) == 35
+    assert job_1.std_forces[0][0] == [
         1.0,
         1.0,
         -0.012034736,
         0.000231533,
         -0.008718935,
     ]
-    assert job_1["std_forces"][0][-1] == [
+    assert job_1.std_forces[0][-1] == [
         35.0,
         1.0,
         0.002160253,
         -0.010676581,
         -0.009002864,
     ]
-    assert job_1["std_forces"][-1][0] == [1.0, 1.0, -8e-08, -9e-09, 1.92e-07]
-    assert job_1["std_forces"][-1][-1] == [35.0, 1.0, -2.2e-08, 1.8e-08, -1e-09]
-    assert len(job_2["std_forces"]) == 10
-    assert len(job_2["std_forces"][0]) == 35
-    assert job_2["std_forces"][0][0] == [
+    assert job_1.std_forces[-1][0] == [1.0, 1.0, -8e-08, -9e-09, 1.92e-07]
+    assert job_1.std_forces[-1][-1] == [35.0, 1.0, -2.2e-08, 1.8e-08, -1e-09]
+    assert len(job_2.std_forces) == 10
+    assert len(job_2.std_forces[0]) == 35
+    assert job_2.std_forces[0][0] == [
         1.0,
         1.0,
         0.013295924,
         -0.000472478,
         0.000883286,
     ]
-    assert job_2["std_forces"][0][-1] == [
+    assert job_2.std_forces[0][-1] == [
         35.0,
         1.0,
         -0.000877563,
         0.001225992,
         0.003512116,
     ]
-    assert job_2["std_forces"][-1][0] == [1.0, 1.0, 2.06e-07, -1.15e-07, -2.2e-08]
-    assert job_2["std_forces"][-1][-1] == [35.0, 1.0, 6e-09, 5e-09, 2e-09]
-    assert len(job_3["std_forces"]) == 32
-    assert len(job_3["std_forces"][0]) == 35
-    assert job_3["std_forces"][0][0] == [
+    assert job_2.std_forces[-1][0] == [1.0, 1.0, 2.06e-07, -1.15e-07, -2.2e-08]
+    assert job_2.std_forces[-1][-1] == [35.0, 1.0, 6e-09, 5e-09, 2e-09]
+    assert len(job_3.std_forces) == 32
+    assert len(job_3.std_forces[0]) == 35
+    assert job_3.std_forces[0][0] == [
         1.0,
         1.0,
         -0.016887644,
         -0.00517337,
         -0.008264572,
     ]
-    assert job_3["std_forces"][0][-1] == [
+    assert job_3.std_forces[0][-1] == [
         35.0,
         1.0,
         -0.001623912,
         0.006837508,
         0.008029253,
     ]
-    assert job_3["std_forces"][-1][0] == [1.0, 1.0, -5.19e-07, -2.07e-07, 3.29e-07]
-    assert job_3["std_forces"][-1][-1] == [35.0, 1.0, 1.95e-07, -5.4e-08, 8.3e-08]
-    assert len(job_1["std_xyz"]) == 19
-    assert len(job_1["std_xyz"][0]) == 35
-    assert job_1["std_xyz"][0][0] == [1.0, 1.0, 0.0, -0.274545, -2.553625, 1.166114]
-    assert job_1["std_xyz"][0][-1] == [35.0, 1.0, 0.0, -3.902734, 2.175794, 1.493715]
-    assert job_1["std_xyz"][1][0] == [1.0, 1.0, 0.0, 0.104125, -2.044038, 1.430378]
-    assert job_1["std_xyz"][1][-1] == [35.0, 1.0, 0.0, -4.005975, 1.944035, 1.575083]
-    assert job_1["std_xyz"][-1][0] == [1.0, 1.0, 0.0, 2.288411, -1.715873, 2.983735]
-    assert job_1["std_xyz"][-1][-1] == [35.0, 1.0, 0.0, -3.483513, 0.579376, 2.671913]
-    assert len(job_2["std_xyz"]) == 10
-    assert len(job_2["std_xyz"][0]) == 35
-    assert job_2["std_xyz"][0][0] == [1.0, 1.0, 0.0, 2.288411, -1.715873, 2.983735]
-    assert job_2["std_xyz"][0][-1] == [35.0, 1.0, 0.0, -3.483513, 0.579376, 2.671913]
-    assert job_2["std_xyz"][1][0] == [1.0, 1.0, 0.0, 1.46839, -1.948579, 2.481679]
-    assert job_2["std_xyz"][1][-1] == [35.0, 1.0, 0.0, -3.336096, 0.644271, 2.658772]
-    assert job_2["std_xyz"][-1][0] == [1.0, 1.0, 0.0, 0.277827, -0.733444, 2.34837]
-    assert job_2["std_xyz"][-1][-1] == [35.0, 1.0, 0.0, -3.292172, 2.078041, 1.982963]
-    assert len(job_3["std_xyz"]) == 32
-    assert len(job_3["std_xyz"][0]) == 35
-    assert job_3["std_xyz"][0][0] == [1.0, 1.0, 0.0, 0.277827, -0.733444, 2.34837]
-    assert job_3["std_xyz"][0][-1] == [35.0, 1.0, 0.0, -3.292172, 2.078041, 1.982963]
-    assert job_3["std_xyz"][1][0] == [1.0, 1.0, 0.0, 0.322829, -0.775239, 2.426687]
-    assert job_3["std_xyz"][1][-1] == [35.0, 1.0, 0.0, -3.297056, 2.031193, 1.995294]
-    assert job_3["std_xyz"][-1][0] == [1.0, 1.0, 0.0, 1.785766, -1.923322, 2.412318]
-    assert job_3["std_xyz"][-1][-1] == [35.0, 1.0, 0.0, -4.255334, 1.709578, 1.25933]
-    assert len(job_1["xyz"]) == 19
-    assert len(job_1["xyz"][0]) == 35
-    assert job_1["xyz"][0] == [
+    assert job_3.std_forces[-1][0] == [1.0, 1.0, -5.19e-07, -2.07e-07, 3.29e-07]
+    assert job_3.std_forces[-1][-1] == [35.0, 1.0, 1.95e-07, -5.4e-08, 8.3e-08]
+    assert len(job_1.std_xyz) == 19
+    assert len(job_1.std_xyz[0]) == 35
+    assert job_1.std_xyz[0][0] == [1.0, 1.0, 0.0, -0.274545, -2.553625, 1.166114]
+    assert job_1.std_xyz[0][-1] == [35.0, 1.0, 0.0, -3.902734, 2.175794, 1.493715]
+    assert job_1.std_xyz[1][0] == [1.0, 1.0, 0.0, 0.104125, -2.044038, 1.430378]
+    assert job_1.std_xyz[1][-1] == [35.0, 1.0, 0.0, -4.005975, 1.944035, 1.575083]
+    assert job_1.std_xyz[-1][0] == [1.0, 1.0, 0.0, 2.288411, -1.715873, 2.983735]
+    assert job_1.std_xyz[-1][-1] == [35.0, 1.0, 0.0, -3.483513, 0.579376, 2.671913]
+    assert len(job_2.std_xyz) == 10
+    assert len(job_2.std_xyz[0]) == 35
+    assert job_2.std_xyz[0][0] == [1.0, 1.0, 0.0, 2.288411, -1.715873, 2.983735]
+    assert job_2.std_xyz[0][-1] == [35.0, 1.0, 0.0, -3.483513, 0.579376, 2.671913]
+    assert job_2.std_xyz[1][0] == [1.0, 1.0, 0.0, 1.46839, -1.948579, 2.481679]
+    assert job_2.std_xyz[1][-1] == [35.0, 1.0, 0.0, -3.336096, 0.644271, 2.658772]
+    assert job_2.std_xyz[-1][0] == [1.0, 1.0, 0.0, 0.277827, -0.733444, 2.34837]
+    assert job_2.std_xyz[-1][-1] == [35.0, 1.0, 0.0, -3.292172, 2.078041, 1.982963]
+    assert len(job_3.std_xyz) == 32
+    assert len(job_3.std_xyz[0]) == 35
+    assert job_3.std_xyz[0][0] == [1.0, 1.0, 0.0, 0.277827, -0.733444, 2.34837]
+    assert job_3.std_xyz[0][-1] == [35.0, 1.0, 0.0, -3.292172, 2.078041, 1.982963]
+    assert job_3.std_xyz[1][0] == [1.0, 1.0, 0.0, 0.322829, -0.775239, 2.426687]
+    assert job_3.std_xyz[1][-1] == [35.0, 1.0, 0.0, -3.297056, 2.031193, 1.995294]
+    assert job_3.std_xyz[-1][0] == [1.0, 1.0, 0.0, 1.785766, -1.923322, 2.412318]
+    assert job_3.std_xyz[-1][-1] == [35.0, 1.0, 0.0, -4.255334, 1.709578, 1.25933]
+    assert len(job_1.xyz) == 19
+    assert len(job_1.xyz[0]) == 35
+    assert job_1.xyz[0] == [
         [1.0, 1.0, 0.0, -0.685827, 1.281098, 0.993117],
         [2.0, 8.0, 0.0, 0.282333, 0.454653, -0.531484],
         [3.0, 8.0, 0.0, 0.032084, 1.524857, 0.372679],
@@ -292,9 +292,9 @@ def test_fast_gaussian_logfile_parser():
         [34.0, 1.0, 0.0, -2.691067, -2.958123, -2.706509],
         [35.0, 1.0, 0.0, -5.829554, 4.146093, 0.007037],
     ]
-    assert len(job_2["xyz"]) == 10
-    assert len(job_2["xyz"][0]) == 35
-    assert job_2["xyz"][1] == [
+    assert len(job_2.xyz) == 10
+    assert len(job_2.xyz[0]) == 35
+    assert job_2.xyz[1] == [
         [1.0, 1.0, 0.0, -0.026543, 1.559817, -0.795496],
         [2.0, 8.0, 0.0, 0.8069, -0.078595, -0.680779],
         [3.0, 8.0, 0.0, 0.375637, 0.941727, -1.45434],
@@ -331,9 +331,9 @@ def test_fast_gaussian_logfile_parser():
         [34.0, 1.0, 0.0, -2.361697, -2.222314, -3.064184],
         [35.0, 1.0, 0.0, -4.731955, 4.209199, 0.027422],
     ]
-    assert len(job_3["xyz"]) == 32
-    assert len(job_3["xyz"][0]) == 35
-    assert job_3["xyz"][-1] == [
+    assert len(job_3.xyz) == 32
+    assert len(job_3.xyz[0]) == 35
+    assert job_3.xyz[-1] == [
         [1.0, 1.0, 0.0, 0.261758, 1.177112, -0.548527],
         [2.0, 8.0, 0.0, 0.745479, -0.574321, -1.041625],
         [3.0, 8.0, 0.0, -0.019596, 0.573298, -1.25073],
@@ -370,13 +370,13 @@ def test_fast_gaussian_logfile_parser():
         [34.0, 1.0, 0.0, -2.467614, -2.496701, -2.862313],
         [35.0, 1.0, 0.0, -6.368236, 3.716111, 0.238162],
     ]
-    assert job_1["max_steps"] == 64
-    assert job_2["max_steps"] == 64
-    assert job_3["max_steps"] == 90
-    assert len(job_1["frequency_modes"]) == 99
-    assert len(job_2["frequency_modes"]) == 99
-    assert len(job_3["frequency_modes"]) == 99
-    assert job_3["frequency_modes"][-1] == [
+    assert job_1.max_steps == 64
+    assert job_2.max_steps == 64
+    assert job_3.max_steps == 90
+    assert len(job_1.frequency_modes) == 99
+    assert len(job_2.frequency_modes) == 99
+    assert len(job_3.frequency_modes) == 99
+    assert job_3.frequency_modes[-1] == [
         [1.0, 1.0, 0.55, 0.78, -0.3],
         [2.0, 8.0, -0.0, 0.0, 0.0],
         [3.0, 8.0, -0.03, -0.05, 0.02],
@@ -422,10 +422,10 @@ def test_fast_gaussian_logfile_parser_2():
 
     file = os.path.join(os.path.dirname(__file__), "data", "non_ts_opt_failed.log")
     job = fast_gaussian_logfile_parser(file)[0]
-    assert job["normal_termination"] is False
-    assert job["charge_and_multiplicity"] == [0, 1]
-    assert len(job["scf"]) == job["number_of_optimization_steps"]
-    # assert job["route_section"] == None
+    assert job.normal_termination is False
+    assert job.charge_and_multiplicity == [0, 1]
+    assert len(job.scf) == job.number_of_optimization_steps
+    # assert job.route_section == None
 
 
 def test_fast_gaussian_logfile_parser_3():
@@ -435,14 +435,14 @@ def test_fast_gaussian_logfile_parser_3():
 
     file = os.path.join(os.path.dirname(__file__), "data", "non_ts_opt_success.log")
     job = fast_gaussian_logfile_parser(file)[0]
-    assert job["normal_termination"] is True
-    assert job["charge_and_multiplicity"] == [0, 1]
+    assert job.normal_termination is True
+    assert job.charge_and_multiplicity == [0, 1]
     assert (
-        job["route_section"]
+        job.route_section
         == "P opt=(calcfc,maxcycle=128,noeig,nomicro,cartesian) freq scf=(xqc) iop(7/33=1) iop(2/9=2000) guess=mix wb97xd/def2svp"
     )
-    assert len(job["scf"]) == 26
-    assert job["scf"] == [
+    assert len(job.scf) == 26
+    assert job.scf == [
         402.853361198,
         402.854751059,
         402.85564611,
@@ -470,15 +470,15 @@ def test_fast_gaussian_logfile_parser_3():
         402.855832948,
         402.855832948,
     ]
-    assert job["cpu_time"] == 4284.2
-    assert job["wall_time"] == 293.4
-    assert job["gibbs"] == -402.715409
-    assert job["e0_zpe"] == -402.682224
-    assert job["e0_h"] == -402.672907
-    assert job["hf"] == -402.8558329
-    assert job["zpe_per_atom"] == 0.1736092  # (Hartree/Particle)
-    assert job["recovered_energy"] is None
-    assert job["frequencies"] == [
+    assert job.cpu_time == 4284.2
+    assert job.wall_time == 293.4
+    assert job.gibbs == -402.715409
+    assert job.e0_zpe == -402.682224
+    assert job.e0_h == -402.672907
+    assert job.hf == -402.8558329
+    assert job.zpe_per_atom == 0.1736092  # (Hartree/Particle)
+    assert job.recovered_energy is None
+    assert job.frequencies == [
         72.9396,
         96.8683,
         192.394,
@@ -534,9 +534,9 @@ def test_fast_gaussian_logfile_parser_3():
         3260.4636,
         3555.4258,
     ]
-    assert len(job["frequencies"]) == 54
-    assert len(job["std_forces"]) == 25
-    assert job["std_forces"][0] == [
+    assert len(job.frequencies) == 54
+    assert len(job.std_forces) == 25
+    assert job.std_forces[0] == [
         [1.0, 6.0, 0.007904782, 0.007077733, -0.000768348],
         [2.0, 6.0, 0.002319393, -0.001730758, 0.002172075],
         [3.0, 6.0, -0.001626312, 0.008349336, -0.002861984],
@@ -558,7 +558,7 @@ def test_fast_gaussian_logfile_parser_3():
         [19.0, 1.0, 0.008439219, 0.0028354, -0.001547936],
         [20.0, 1.0, 0.006090055, -0.000968801, -0.002036544],
     ]
-    assert job["std_forces"][-1] == [
+    assert job.std_forces[-1] == [
         [1.0, 6.0, 1.736e-06, -4.121e-06, -1.746e-06],
         [2.0, 6.0, 1.6e-07, -1.898e-06, -1.1e-07],
         [3.0, 6.0, 5.23e-07, -1.106e-06, -7.55e-07],
@@ -580,8 +580,8 @@ def test_fast_gaussian_logfile_parser_3():
         [19.0, 1.0, -9.25e-07, 6.29e-07, 7.72e-07],
         [20.0, 1.0, -8.49e-07, -1.023e-06, 1.348e-06],
     ]
-    assert len(job["std_xyz"]) == 27
-    assert job["std_xyz"][0] == [
+    assert len(job.std_xyz) == 27
+    assert job.std_xyz[0] == [
         [1.0, 6.0, 0.0, 2.17146, 1.203793, -0.202192],
         [2.0, 6.0, 0.0, 1.17511, 0.076574, -0.062046],
         [3.0, 6.0, 0.0, -0.207337, 0.370451, -0.658537],
@@ -603,7 +603,7 @@ def test_fast_gaussian_logfile_parser_3():
         [19.0, 1.0, 0.0, 0.333186, -1.245759, 1.506709],
         [20.0, 1.0, 0.0, 1.058421, -1.886332, -0.672677],
     ]
-    assert job["std_xyz"][-1] == [
+    assert job.std_xyz[-1] == [
         [1.0, 6.0, 0.0, 2.167612, 1.223055, -0.194553],
         [2.0, 6.0, 0.0, 1.18666, 0.084602, -0.049209],
         [3.0, 6.0, 0.0, -0.199375, 0.366547, -0.634572],
@@ -625,8 +625,8 @@ def test_fast_gaussian_logfile_parser_3():
         [19.0, 1.0, 0.0, 0.330741, -1.281243, 1.466248],
         [20.0, 1.0, 0.0, 1.010553, -1.83645, -0.667129],
     ]
-    assert job["max_steps"] == 120
-    assert job["frequency_modes"][0] == [
+    assert job.max_steps == 120
+    assert job.frequency_modes[0] == [
         [1.0, 6.0, -0.08, 0.06, 0.18],
         [2.0, 6.0, -0.02, -0.02, 0.01],
         [3.0, 6.0, 0.0, -0.05, -0.04],
@@ -648,7 +648,7 @@ def test_fast_gaussian_logfile_parser_3():
         [19.0, 1.0, 0.02, -0.22, -0.15],
         [20.0, 1.0, 0.11, 0.03, -0.17],
     ]
-    assert job["frequency_modes"][-1] == [
+    assert job.frequency_modes[-1] == [
         [1.0, 6.0, 0.0, 0.0, -0.0],
         [2.0, 6.0, -0.0, 0.0, 0.0],
         [3.0, 6.0, -0.0, 0.0, -0.0],
@@ -670,6 +670,6 @@ def test_fast_gaussian_logfile_parser_3():
         [19.0, 1.0, 0.01, 0.0, -0.0],
         [20.0, 1.0, 0.69, 0.58, 0.42],
     ]
-    assert len(job["frequency_modes"]) == 54
-    assert job["number_of_atoms"] == 20
-    assert job["number_of_optimization_steps"] == 26
+    assert len(job.frequency_modes) == 54
+    assert job.number_of_atoms == 20
+    assert job.number_of_optimization_steps == 26
