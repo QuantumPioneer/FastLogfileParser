@@ -54,7 +54,7 @@ METADATA = {
     "error_string": r" Error termination(.*)\n"
 }
 
-RETRIEVAL_PATTERNS = DATA | METADATA
+RETRIEVAL_PATTERNS = {**DATA , **METADATA}
 
 # other options:
 # homo-lumo gap, polarizability, dipole moment, mulliken and APT partial charges, occupancy
