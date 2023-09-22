@@ -419,7 +419,7 @@ def test_fast_gaussian_logfile_parser_2():
 
     file = os.path.join(os.path.dirname(__file__), "data", "non_ts_opt_failed.log")
     job = fast_gaussian_logfile_parser(file)[0]
-    assert job.error_str[0] == " request processed by link 9999."
+    assert job.error_string[0] == " request processed by link 9999."
     assert job.route_section == (
         "P opt=(calcfc,maxcycle=128,noeig,nomicro,cartesian) freq scf=(xqc)"
         " iop(7/33=1) iop(2/9=2000) guess=mix wb97xd/def2svp"
