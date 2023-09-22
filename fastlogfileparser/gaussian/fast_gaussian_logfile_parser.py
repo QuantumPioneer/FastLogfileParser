@@ -9,6 +9,8 @@ from .utils.regexes import COMPILED_PATTERNS
 from .utils.preprocessing import crush_ginc_block, split_composite_job
 from .utils.postprocessing import POSTPROCESSING_FUNCTIONS
 
+FIELDS = COMPILED_PATTERNS.keys()
+
 
 def fast_gaussian_logfile_parser(
     target_file: str,

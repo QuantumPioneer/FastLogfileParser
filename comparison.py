@@ -6,7 +6,7 @@ from cclib.parser import Gaussian
 from fastlogfileparser.gaussian import fast_gaussian_logfile_parser as fglp
 
 
-FNAME = "test/data/rxn_11.log"
+FNAME = "test/data/ts_opt_three_step_semi_all_success.log"
 
 
 def timeit(func):
@@ -23,8 +23,8 @@ def timeit(func):
 @timeit
 def test_fglp():
     job_1, job_2, job_3 = fglp(FNAME)
-    print("Per-job free energy:", job_1["gibbs"], job_2["gibbs"], job_3["gibbs"])
-    print("Total Energy (eV)", job_1["scf"][-1])
+    print("Per-job free energy:", job_1.gibbs, job_2.gibbs, job_3.gibbs)
+    print("Total Energy (eV)", job_1.scf[-1])
 
 
 @timeit

@@ -26,6 +26,9 @@ print(job_1.frequency_modes)
 
 # show all available values retrieved from the file
 print(job_1._fields)
+
+# can also be accessed via
+from fastlogfileparser.gaussian import FIELDS
 ```
 
 #### Retrieved Values
@@ -46,6 +49,4 @@ $1$ equals E0 only for non-wavefunction methods
 See `comparison.py` to run for yourself (install with `pip install .[demos]`), but in short:
  - compared to `cclib`, `fastlogfileparser` is ~10x as fast and returns all values for intermediate steps in simulation (but `cclib` supports retrieving a different set of values)
  - compared to `ase`, `fastlogfileparser` is ~2x slower, but returns _far more_ values and in a more readily accessible format
-
-## TODO
- - Gaussian: improve parsing of failed jobs: route, failed msg, etc.
+ 
