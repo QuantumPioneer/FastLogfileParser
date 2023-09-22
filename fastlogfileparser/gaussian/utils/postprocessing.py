@@ -63,7 +63,7 @@ POSTPROCESSING_FUNCTIONS = {
     "std_forces": _columns_to_floats,
     "std_xyz": _columns_to_floats,
     "xyz": _columns_to_floats,
-    "route_section": lambda in_list: in_list[1],
+    "route_section": lambda in_list: in_list[0],
     "charge_and_multiplicity": lambda in_list: [int(in_list[0][0]), int(in_list[0][1])],
     "normal_termination": lambda in_list: len(in_list) > 0,
 }

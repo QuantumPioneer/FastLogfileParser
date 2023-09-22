@@ -23,12 +23,9 @@ def test_fast_gaussian_logfile_parser():
         job_2.route_section
         == "P opt=(ModRedundant,ts,calcall,maxcycle=64,noeig,nomicro) scf=(xqc) iop(7/33=1) iop(2/9=2000) geom=check guess=mix pm7"
     )
-    assert (
-        job_3.route_section
-        == (
-            'P opt=(ts,calcall,maxcycle=90,noeig,nomicro,cartesian) scf=(xqc) iop(7/33=1) iop(2/9=2000) geom=check guess=mix external='
-            '"/home/gridsan/groups/RMG/Software/RDMC-main/rdmc/external/xtb_tools/xtb_gaussian.pl --gfn 2 -P"'
-        )
+    assert job_3.route_section == (
+        "P opt=(ts,calcall,maxcycle=90,noeig,nomicro,cartesian) scf=(xqc) iop(7/33=1) iop(2/9=2000) geom=check guess=mix external="
+        '"/home/gridsan/groups/RMG/Software/RDMC-main/rdmc/external/xtb_tools/xtb_gaussian.pl --gfn 2 -P"'
     )
     assert job_1.charge_and_multiplicity == [0, 2]
     assert job_2.charge_and_multiplicity == [0, 2]
@@ -422,10 +419,13 @@ def test_fast_gaussian_logfile_parser_2():
 
     file = os.path.join(os.path.dirname(__file__), "data", "non_ts_opt_failed.log")
     job = fast_gaussian_logfile_parser(file)[0]
+    assert job.route_section == (
+        "P opt=(calcfc,maxcycle=128,noeig,nomicro,cartesian) freq scf=(xqc)"
+        " iop(7/33=1) iop(2/9=2000) guess=mix wb97xd/def2svp"
+    )
     assert job.normal_termination is False
     assert job.charge_and_multiplicity == [0, 1]
     assert len(job.scf) == job.number_of_optimization_steps
-    # assert job.route_section == None
 
 
 def test_fast_gaussian_logfile_parser_3():
