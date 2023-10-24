@@ -17,6 +17,7 @@ ALL_FIELDS = DATA_FIELDS + METADATA_FIELDS
 def fast_gaussian_logfile_parser(
     target_file: str,
     is_wavefunction_method: bool = False,
+    include_intermediates: bool = True,
     get: tuple = ALL_FIELDS,
     verbose: int = 0,
 ):
@@ -25,6 +26,7 @@ def fast_gaussian_logfile_parser(
     Args:
         target_file (str, optional): Logfile path.
         is_wavefunction_method (bool, optional): Turn on to look for method-specific total energy for wavefunction methods. Defaults to False.
+        include_intermediates (bool, optional): Return std_xyz, xyz, and forces for all steps. Defaults to True.
         verbose (int, optional): 0 for silent, 1 for info, 2 for debug. Defaults to 0.
 
     Returns:
@@ -71,6 +73,10 @@ def fast_gaussian_logfile_parser(
                 out_dict["number_of_atoms"] = len(out_dict["std_xyz"][0])
                 # remove 1 for the initial geometry printout
                 out_dict["number_of_optimization_steps"] = len(out_dict["std_xyz"]) - 1
+            if not include_intermediates:
+                for arr in ("std_xyz", "xyz", "std_forces"):
+                    if out_dict.get(arr, False):
+                        out_dict[arr] = out_dict[arr][-1]
             out_tuples.append(namedtuple("job_result", out_dict.keys())(*out_dict.values()))
 
     # debug info
