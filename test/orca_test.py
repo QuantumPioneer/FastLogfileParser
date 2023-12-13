@@ -44,3 +44,35 @@ def test_fast_orca_logfile_parser():
         [0.757108, 0.032206, -1.19073],
         [0.644543, -3.834457, -1.132202],
     ]
+
+
+def test_fast_orca_logfile_parser_dlpno():
+    """
+    Test orca parser
+    """
+
+    file = os.path.join(os.path.dirname(__file__), "data", "0.log")
+    # note the comma, which returns the only element in the tuple rather than a tuple
+    (result,) = fast_orca_logfile_parser(file)
+    assert (
+        result.route_section
+        == "uHF UNO DLPNO-CCSD(T)-F12D cc-pvtz-f12 def2/J cc-pvqz/c cc-pvqz-f12-cabs RIJCOSX NormalSCF NormalPNO"
+    )
+    assert result.run_time == 356.0
+    assert result.charge_and_multiplicity == [0, 2]
+    assert result.input_coordinates == [
+        [-1.516928, -1.007427, -0.400551],
+        [-1.471551, 0.245216, 0.33273],
+        [-0.445848, 1.221215, -0.248996],
+        [1.000886, 1.015454, 0.168008],
+        [1.565196, -0.215203, -0.326833],
+        [1.360864, -1.211668, 0.472979],
+        [-0.673609, -1.552438, -0.232207],
+        [-2.295263, -1.5754, -0.075045],
+        [-2.462807, 0.718154, 0.244641],
+        [-1.27851, 0.135553, 1.421852],
+        [-0.521536, 1.197385, -1.347764],
+        [-0.701554, 2.245313, 0.070574],
+        [1.116944, 1.003499, 1.262404],
+        [1.645021, 1.795278, -0.262281],
+    ]
