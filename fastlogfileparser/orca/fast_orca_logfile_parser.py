@@ -5,8 +5,8 @@ import re
 import warnings
 from collections import namedtuple
 
-from .utils.regexes import COMPILED_PATTERNS, METADATA, DATA
 from .utils.postprocessing import POSTPROCESSING_FUNCTIONS
+from .utils.regexes import COMPILED_PATTERNS, DATA, METADATA
 
 METADATA_FIELDS = tuple(METADATA.keys())
 DATA_FIELDS = tuple(DATA.keys())

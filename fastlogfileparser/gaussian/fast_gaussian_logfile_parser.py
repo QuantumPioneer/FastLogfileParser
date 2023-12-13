@@ -5,9 +5,9 @@ import re
 import warnings
 from collections import namedtuple
 
-from .utils.regexes import COMPILED_PATTERNS, METADATA, DATA
-from .utils.preprocessing import crush_ginc_block, split_composite_job
 from .utils.postprocessing import POSTPROCESSING_FUNCTIONS
+from .utils.preprocessing import crush_ginc_block, split_composite_job
+from .utils.regexes import COMPILED_PATTERNS, DATA, METADATA
 
 METADATA_FIELDS = tuple(METADATA.keys())
 DATA_FIELDS = tuple(DATA.keys())
@@ -77,7 +77,9 @@ def fast_gaussian_logfile_parser(
                 for arr in ("std_xyz", "xyz", "std_forces"):
                     if out_dict.get(arr, False):
                         out_dict[arr] = out_dict[arr][-1]
-            out_tuples.append(namedtuple("job_result", out_dict.keys())(*out_dict.values()))
+            out_tuples.append(
+                namedtuple("job_result", out_dict.keys())(*out_dict.values())
+            )
 
     # debug info
     if verbose > 2:

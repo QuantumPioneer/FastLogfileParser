@@ -1,5 +1,9 @@
-from fastlogfileparser.generic.postprocessing import _str_to_float, _charge_and_multiplicity, _columns_to_floats, _unix_time_to_seconds
-
+from fastlogfileparser.generic.postprocessing import (
+    _charge_and_multiplicity,
+    _columns_to_floats,
+    _str_to_float,
+    _unix_time_to_seconds,
+)
 
 POSTPROCESSING_FUNCTIONS = {
     # gaussian-based column converter expects more fields, we wrap it like this:

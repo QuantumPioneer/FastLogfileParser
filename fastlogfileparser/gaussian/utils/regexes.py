@@ -51,7 +51,7 @@ METADATA = {
     "wall_time": r" Elapsed time: \s+(\d+ days\s+\d+ hours\s+\d+ minutes\s+\d+\.?\d+ seconds)",
     "max_steps": r"Number of steps in this run=\s+(\d+) ",
     "normal_termination": r" Normal termination ",
-    "error_string": r" Error termination(.*)\n"
+    "error_string": r" Error termination(.*)\n",
 }
 
 RETRIEVAL_PATTERNS = {**DATA, **METADATA}

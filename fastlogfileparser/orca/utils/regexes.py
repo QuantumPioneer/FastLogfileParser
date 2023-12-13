@@ -1,6 +1,5 @@
 import re
 
-
 # input coordinates
 #  final single point energy
 #  total run time

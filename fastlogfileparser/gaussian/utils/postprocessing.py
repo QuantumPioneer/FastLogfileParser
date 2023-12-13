@@ -1,5 +1,11 @@
-from fastlogfileparser.generic.postprocessing import _charge_and_multiplicity, _unix_time_to_seconds, _str_to_float, _str_list_to_floats, _freq_modes, _columns_to_floats
-
+from fastlogfileparser.generic.postprocessing import (
+    _charge_and_multiplicity,
+    _columns_to_floats,
+    _freq_modes,
+    _str_list_to_floats,
+    _str_to_float,
+    _unix_time_to_seconds,
+)
 
 POSTPROCESSING_FUNCTIONS = {
     "cpu_time": _unix_time_to_seconds,
