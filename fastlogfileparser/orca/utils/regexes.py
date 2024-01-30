@@ -15,7 +15,7 @@ DATA = {
 METADATA = {
     "route_section": r"  1> !(.+)\n",
     # ignores milliseconds (2 min + 100 ms ~ 2 min)
-    "run_time": r"TOTAL RUN TIME:\s+(\d+ days\s+\d+ hours\s+\d+ minutes\s+\d+\.?\d+ seconds)",
+    "run_time": r"TOTAL RUN TIME:\s+(\d+ days\s+\d+ hours\s+\d+ minutes\s+\d+ seconds)",
 }
 
 RETRIEVAL_PATTERNS = {**DATA, **METADATA}
