@@ -27,5 +27,4 @@ POSTPROCESSING_FUNCTIONS = {
     "xyz": _columns_to_floats,
     "route_section": lambda in_list: in_list[0],
     "charge_and_multiplicity": _charge_and_multiplicity,
-    "normal_termination": lambda in_list: len(in_list) > 0,
 }

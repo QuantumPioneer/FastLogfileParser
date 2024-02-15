@@ -60,7 +60,4 @@ RETRIEVAL_PATTERNS = {**DATA, **METADATA}
 # homo-lumo gap, polarizability, dipole moment, mulliken and APT partial charges, occupancy
 
 
-COMPILED_PATTERNS = {
-    pattern_name: re.compile(pattern)
-    for (pattern_name, pattern) in RETRIEVAL_PATTERNS.items()
-}
+COMPILED_PATTERNS = {pattern_name: re.compile(pattern) for (pattern_name, pattern) in RETRIEVAL_PATTERNS.items()}
