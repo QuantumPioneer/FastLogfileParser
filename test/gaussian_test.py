@@ -1,16 +1,19 @@
 import os
 
+import pytest
+
 from fastlogfileparser.gaussian import fast_gaussian_logfile_parser
 
+from .data_check_test import pytest_dep_args
 
+
+@pytest.mark.dependency(**pytest_dep_args)
 def test_fast_gaussian_logfile_parser():
     """
     Test parser using a log file with gaussian LINK of three consecutive semi-empirical level jobs AM1, PM7, XTB
     """
 
-    file = os.path.join(
-        os.path.dirname(__file__), "data", "ts_opt_three_step_semi_all_success.log"
-    )
+    file = os.path.join(os.path.dirname(__file__), "data", "ts_opt_three_step_semi_all_success.log")
     job_1, job_2, job_3 = fast_gaussian_logfile_parser(file)
     assert job_1.normal_termination is True
     assert job_2.normal_termination is True
@@ -412,6 +415,7 @@ def test_fast_gaussian_logfile_parser():
     ]
 
 
+@pytest.mark.dependency(**pytest_dep_args)
 def test_fast_gaussian_logfile_parser_2():
     """
     Test parser using a gaussian log file for a DFT optimization that failed.
@@ -421,14 +425,14 @@ def test_fast_gaussian_logfile_parser_2():
     job = fast_gaussian_logfile_parser(file)[0]
     assert job.error_string[0] == " request processed by link 9999."
     assert job.route_section == (
-        "P opt=(calcfc,maxcycle=128,noeig,nomicro,cartesian) freq scf=(xqc)"
-        " iop(7/33=1) iop(2/9=2000) guess=mix wb97xd/def2svp"
+        "P opt=(calcfc,maxcycle=128,noeig,nomicro,cartesian) freq scf=(xqc)" " iop(7/33=1) iop(2/9=2000) guess=mix wb97xd/def2svp"
     )
     assert job.normal_termination is False
     assert job.charge_and_multiplicity == [0, 1]
     assert len(job.scf) == job.number_of_optimization_steps
 
 
+@pytest.mark.dependency(**pytest_dep_args)
 def test_fast_gaussian_logfile_parser_3():
     """
     Test parser using a gaussian log file for a DFT optimization that succeed.
@@ -439,8 +443,7 @@ def test_fast_gaussian_logfile_parser_3():
     assert job.normal_termination is True
     assert job.charge_and_multiplicity == [0, 1]
     assert (
-        job.route_section
-        == "P opt=(calcfc,maxcycle=128,noeig,nomicro,cartesian) freq scf=(xqc) iop(7/33=1) iop(2/9=2000) guess=mix wb97xd/def2svp"
+        job.route_section == "P opt=(calcfc,maxcycle=128,noeig,nomicro,cartesian) freq scf=(xqc) iop(7/33=1) iop(2/9=2000) guess=mix wb97xd/def2svp"
     )
     assert len(job.scf) == 26
     assert job.scf == [

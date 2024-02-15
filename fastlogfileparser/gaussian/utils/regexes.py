@@ -51,7 +51,7 @@ METADATA = {
     "wall_time": r" Elapsed time: \s+(\d+ days\s+\d+ hours\s+\d+ minutes\s+\d+\.?\d+ seconds)",
     "max_steps": r"Number of steps in this run=\s+(\d+) ",
     "normal_termination": r" Normal termination ",
-    "error_string": r" Error termination(.*)\n"
+    "error_string": r" Error termination(.*)\n",
 }
 
 RETRIEVAL_PATTERNS = {**DATA, **METADATA}
@@ -60,7 +60,4 @@ RETRIEVAL_PATTERNS = {**DATA, **METADATA}
 # homo-lumo gap, polarizability, dipole moment, mulliken and APT partial charges, occupancy
 
 
-COMPILED_PATTERNS = {
-    pattern_name: re.compile(pattern)
-    for (pattern_name, pattern) in RETRIEVAL_PATTERNS.items()
-}
+COMPILED_PATTERNS = {pattern_name: re.compile(pattern) for (pattern_name, pattern) in RETRIEVAL_PATTERNS.items()}

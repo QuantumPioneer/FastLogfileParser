@@ -1,11 +1,11 @@
-from time import perf_counter
 import os
+from time import perf_counter
 
 from ase.io.gaussian import read_gaussian_out
 from cclib.parser import Gaussian
-from fastlogfileparser.gaussian import fast_gaussian_logfile_parser as fglp
-from fastlogfileparser.gaussian import DATA_FIELDS
 
+from fastlogfileparser.gaussian import DATA_FIELDS
+from fastlogfileparser.gaussian import fast_gaussian_logfile_parser as fglp
 
 FNAME = "test/data/ts_opt_three_step_semi_all_success.log"
 
