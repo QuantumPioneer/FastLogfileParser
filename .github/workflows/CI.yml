@@ -58,6 +58,10 @@ jobs:
         run: |
           python -m pip install .
           python -m pip install coverage pytest
+      - name: Decompress Test Data
+        run: |
+          cd test
+          python data_loader.py decompress
       - name: Run Tests
         run: |
           coverage run --source=. -m pytest -v
