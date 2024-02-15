@@ -1,8 +1,13 @@
 import os
 
+import pytest
+
 from fastlogfileparser.orca import fast_orca_logfile_parser
 
+from .data_check_test import pytest_dep_args
 
+
+@pytest.mark.dependency(**pytest_dep_args)
 def test_fast_orca_logfile_parser():
     """
     Test orca parser
@@ -11,10 +16,7 @@ def test_fast_orca_logfile_parser():
     file = os.path.join(os.path.dirname(__file__), "data", "id0.log")
     # note the comma, which returns the only element in the tuple rather than a tuple
     (result,) = fast_orca_logfile_parser(file)
-    assert (
-        result.route_section
-        == "uHF dlpno-ccsd(t) def2-svp def2-svp/c TightSCF NormalPNO"
-    )
+    assert result.route_section == "uHF dlpno-ccsd(t) def2-svp def2-svp/c TightSCF NormalPNO"
     assert result.run_time == 134.0
     assert result.charge_and_multiplicity == [0, 2]
     assert result.input_coordinates == [
@@ -46,6 +48,7 @@ def test_fast_orca_logfile_parser():
     ]
 
 
+@pytest.mark.dependency(**pytest_dep_args)
 def test_fast_orca_logfile_parser_dlpno():
     """
     Test orca parser
@@ -54,10 +57,7 @@ def test_fast_orca_logfile_parser_dlpno():
     file = os.path.join(os.path.dirname(__file__), "data", "0.log")
     # note the comma, which returns the only element in the tuple rather than a tuple
     (result,) = fast_orca_logfile_parser(file)
-    assert (
-        result.route_section
-        == "uHF UNO DLPNO-CCSD(T)-F12D cc-pvtz-f12 def2/J cc-pvqz/c cc-pvqz-f12-cabs RIJCOSX NormalSCF NormalPNO"
-    )
+    assert result.route_section == "uHF UNO DLPNO-CCSD(T)-F12D cc-pvtz-f12 def2/J cc-pvqz/c cc-pvqz-f12-cabs RIJCOSX NormalSCF NormalPNO"
     assert result.run_time == 356.0
     assert result.charge_and_multiplicity == [0, 2]
     assert result.input_coordinates == [

@@ -59,3 +59,15 @@ $2$ requires `std_xyz` to be parsed to find these values <br>
 See `comparison.py` to run for yourself (install with `pip install .[demos]`), but in short:
  - compared to `cclib`, `fastlogfileparser` is ~10x as fast and returns all values for intermediate steps in simulation (but `cclib` supports retrieving a different set of values)
  - compared to `ase`, `fastlogfileparser` is ~2x slower, but returns _far more_ values and in a more readily accessible format
+
+## Development Notes
+`FastLogfileParser` is written in a purely functional style.
+
+### Running Tests
+Install `FastLogfileParser` with the optional `[dev]` dependencies, i.e. from a local clone run `pip install -e ".[dev]"
+
+Rather than keep the gigantic log files saved in the git repo directly, they are compressed to make cloning easier.
+Before running tests, navigate to `test` and run `python data_loader.py decompress` to prepare the needed logfiles.
+
+To add new data for the tests to the repo, perform the previous step and then run `python data_loader.py compress`.
+This may take some time to finish executing (a minute or so).

@@ -18,7 +18,7 @@ requires-python = ">=3.8"
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["black", "isort", "pytest"]
+dev = ["black", "isort", "pytest", "pytest-dependency"]
 demos = ["ase", "cclib"]
 
 [project.readme]
