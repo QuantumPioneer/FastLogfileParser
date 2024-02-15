@@ -7,7 +7,7 @@ import re
 #  charge and multiplicity (also in the input file section)
 
 DATA = {
-    "input_coordinates": r"\|...>..\s+([\s+\d+\s+\d+\s+-?\d+\.\d+\s+-?\d+\.\d+\s+-?\d+\.\d+]+)\n",
+    "input_coordinates": r"\|[ \d]{3}>.\w{1,2}[ ]{2,3}([\s+\d+\s+\d+\s+-?\d+\.\d+\s+-?\d+\.\d+\s+-?\d+\.\d+]+)\n",
     "energy": r"FINAL SINGLE POINT ENERGY\s+(-?\d+.\d+)\n",
     "charge_and_multiplicity": r"...> \* xyz (-?\d) (\d)\n",
 }
@@ -20,7 +20,4 @@ METADATA = {
 
 RETRIEVAL_PATTERNS = {**DATA, **METADATA}
 
-COMPILED_PATTERNS = {
-    pattern_name: re.compile(pattern)
-    for (pattern_name, pattern) in RETRIEVAL_PATTERNS.items()
-}
+COMPILED_PATTERNS = {pattern_name: re.compile(pattern) for (pattern_name, pattern) in RETRIEVAL_PATTERNS.items()}
