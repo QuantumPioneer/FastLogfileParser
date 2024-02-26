@@ -28,6 +28,11 @@ content-type = "text/markdown"
 [tool.isort]
 profile = "black"
 
+[tool.pytest.ini_options]
+markers = [
+    "dependency: pytest-dependency marker",
+]
+
 [tool.setuptools]
 include-package-data = true
 
