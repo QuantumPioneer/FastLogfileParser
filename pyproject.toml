@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "fastlogfileparser"
-version = "1.0.0a5"
+version = "1.0.0a6"
 authors = [
     { name = "Jackson Burns" },
 ]
@@ -27,6 +27,11 @@ content-type = "text/markdown"
 
 [tool.isort]
 profile = "black"
+
+[tool.pytest.ini_options]
+markers = [
+    "dependency: pytest-dependency marker",
+]
 
 [tool.setuptools]
 include-package-data = true
