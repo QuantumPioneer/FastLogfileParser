@@ -8,6 +8,17 @@ from .data_check_test import pytest_dep_args
 
 
 @pytest.mark.dependency(**pytest_dep_args)
+def test_duplicated_frequencies_handling():
+    """
+    Sometimes Gaussian prints frequencies multiple times - fglp should remove them auto-magically.
+    """
+
+    file = os.path.join(os.path.dirname(__file__), "data", "calcall.log")
+    (result,) = fast_gaussian_logfile_parser(file)
+    assert result.frequencies == [355.51, 1029.1913, 1349.894, 1491.2134, 3851.6427, 3853.9729]
+
+
+@pytest.mark.dependency(**pytest_dep_args)
 def test_fast_gaussian_logfile_parser():
     """
     Test parser using a log file with gaussian LINK of three consecutive semi-empirical level jobs AM1, PM7, XTB
