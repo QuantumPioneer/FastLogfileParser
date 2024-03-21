@@ -42,6 +42,12 @@ DATA = {
         r"([\s+\d+\s+\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d]+)\n"
         r"(?:\s+\d+\s+\d+\s+\d+)?\n"
     ),
+    "mulliken_charges_summed": (
+        r" Mulliken charges and spin densities with hydrogens summed into heavy atoms:\n"
+        r"               1          2\n"
+        r"((?:\s+\d+\s+[a-zA-Z]{1,3}\s+-?\d+\.\d+\s+-?\d+\.\d+)+)\n"
+        r" APT charges:"
+    ),
     "charge_and_multiplicity": r" Charge = {1,2}(-?\d) Multiplicity = (\d)",
 }
 
@@ -57,7 +63,7 @@ METADATA = {
 RETRIEVAL_PATTERNS = {**DATA, **METADATA}
 
 # other options:
-# homo-lumo gap, polarizability, dipole moment, mulliken and APT partial charges, occupancy
+# homo-lumo gap, polarizability, dipole moment, APT partial charges, occupancy
 
 
 COMPILED_PATTERNS = {pattern_name: re.compile(pattern) for (pattern_name, pattern) in RETRIEVAL_PATTERNS.items()}
