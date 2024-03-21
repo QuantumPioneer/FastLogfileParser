@@ -7,6 +7,18 @@ from fastlogfileparser.generic.postprocessing import (
     _unix_time_to_seconds,
 )
 
+
+def _mulliken(in_list):
+    out = []
+    for i in in_list:
+        inner_out = []
+        for row in i.split(sep="\n"):
+            atom_idx, _, mulliken_charge, _ = row.split()
+            inner_out.append([int(atom_idx), float(mulliken_charge)])
+        out.append(inner_out)
+    return out
+
+
 POSTPROCESSING_FUNCTIONS = {
     "cpu_time": _unix_time_to_seconds,
     "wall_time": _unix_time_to_seconds,
@@ -27,4 +39,5 @@ POSTPROCESSING_FUNCTIONS = {
     "xyz": _columns_to_floats,
     "route_section": lambda in_list: in_list[0],
     "charge_and_multiplicity": _charge_and_multiplicity,
+    "mulliken_charges_summed": _mulliken,
 }

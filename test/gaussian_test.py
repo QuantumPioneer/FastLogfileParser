@@ -19,6 +19,48 @@ def test_duplicated_frequencies_handling():
 
 
 @pytest.mark.dependency(**pytest_dep_args)
+def test_mulliken_charges():
+    """
+    Mulliken charges summed into heavy atoms.
+    """
+
+    file = os.path.join(os.path.dirname(__file__), "data", "rxn_233.log")
+    result, _, _ = fast_gaussian_logfile_parser(file)
+    assert result.mulliken_charges_summed == [
+        [
+            [2, -0.022831],
+            [3, 0.023347],
+            [13, 0.264456],
+            [14, 0.279877],
+            [15, 0.244798],
+            [16, 0.135469],
+            [17, 0.178793],
+            [18, 0.254435],
+            [19, -0.293571],
+            [20, -0.302496],
+            [21, -0.278843],
+            [22, -0.245202],
+            [23, -0.238233],
+        ],
+        [
+            [2, -0.050449],
+            [3, 0.010743],
+            [13, 0.283808],
+            [14, 0.299583],
+            [15, 0.220744],
+            [16, 0.157101],
+            [17, 0.138796],
+            [18, 0.243924],
+            [19, -0.225737],
+            [20, -0.287798],
+            [21, -0.292178],
+            [22, -0.25534],
+            [23, -0.243197],
+        ],
+    ]
+
+
+@pytest.mark.dependency(**pytest_dep_args)
 def test_fast_gaussian_logfile_parser():
     """
     Test parser using a log file with gaussian LINK of three consecutive semi-empirical level jobs AM1, PM7, XTB
