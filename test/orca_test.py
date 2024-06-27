@@ -60,6 +60,7 @@ def test_fast_orca_logfile_parser_dlpno():
     assert result.route_section == "uHF UNO DLPNO-CCSD(T)-F12D cc-pvtz-f12 def2/J cc-pvqz/c cc-pvqz-f12-cabs RIJCOSX NormalSCF NormalPNO"
     assert result.run_time == 356.0
     assert result.charge_and_multiplicity == [0, 2]
+    assert result.dipole_au == 1.03126
     assert result.input_coordinates == [
         [-1.516928, -1.007427, -0.400551],
         [-1.471551, 0.245216, 0.33273],
