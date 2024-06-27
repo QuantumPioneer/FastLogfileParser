@@ -49,9 +49,8 @@ DATA = {
         r" APT charges:"
     ),
     "charge_and_multiplicity": r" Charge = {1,2}(-?\d) Multiplicity = (\d)",
-    "dipole_au": (
-        r"   Tot        (-?\d+.\d+)D([\+|-]\d+)"
-    ),
+    "dipole_au": r"   Tot        (-?\d+.\d+)D([\+|-]\d+)",
+    "aniso_polarizability_au": r"   aniso      (-?\d+.\d+)D([\+|-]\d+)",
 }
 
 METADATA = {
