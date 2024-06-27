@@ -25,11 +25,12 @@ def test_descriptors():
     """
 
     file = os.path.join(os.path.dirname(__file__), "data", "rxn_233.log")
-    result_1, result_2, _ = fast_gaussian_logfile_parser(file)
+    result_1, result_2, _ = fast_gaussian_logfile_parser(file, verbose=1)
     assert result_1.dipole_au == 0.122109e+01
     assert result_2.dipole_au == 0.158789e+01
     assert result_1.dipole_moment_debye == [-2.2032, 1.3307, -1.7344]
     assert result_2.aniso_polarizability_au == 0.112005e+03
+    assert result_2.homo_lumo_gap == 0.30695
     assert result_1.mulliken_charges_summed == [
         [
             [2, -0.022831],
