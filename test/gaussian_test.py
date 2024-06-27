@@ -28,6 +28,7 @@ def test_descriptors():
     result_1, result_2, _ = fast_gaussian_logfile_parser(file)
     assert result_1.dipole_au == 0.122109e+01
     assert result_2.dipole_au == 0.158789e+01
+    assert result_1.dipole_moment_debye == [-2.2032, 1.3307, -1.7344]
     assert result_2.aniso_polarizability_au == 0.112005e+03
     assert result_1.mulliken_charges_summed == [
         [

@@ -51,6 +51,7 @@ DATA = {
     "charge_and_multiplicity": r" Charge = {1,2}(-?\d) Multiplicity = (\d)",
     "dipole_au": r"   Tot        (-?\d+.\d+)D([\+|-]\d+)",
     "aniso_polarizability_au": r"   aniso      (-?\d+.\d+)D([\+|-]\d+)",
+    "dipole_moment_debye": r"    X=\s+(-?\d+.\d+)\s+Y=\s+(-?\d+.\d+)\s+Z=\s+(-?\d+.\d+)"
 }
 
 METADATA = {
