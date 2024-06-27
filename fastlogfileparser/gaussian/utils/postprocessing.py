@@ -22,7 +22,6 @@ def _fortran_float_to_float(in_list):
 def _hl_gap(in_list):
     """Calculates HOMO-LUMO gap from the
     HOMO and LUMO energies"""
-    print(in_list)
     return float(in_list[-1][1]) - float(in_list[-1][0])
 
 
