@@ -49,6 +49,9 @@ DATA = {
         r" APT charges:"
     ),
     "charge_and_multiplicity": r" Charge = {1,2}(-?\d) Multiplicity = (\d)",
+    "dipole_au": (
+        r"   Tot        (-?\d+.\d+)D([\+|-]\d+)"
+    ),
 }
 
 METADATA = {
@@ -61,9 +64,4 @@ METADATA = {
 }
 
 RETRIEVAL_PATTERNS = {**DATA, **METADATA}
-
-# other options:
-# homo-lumo gap, polarizability, dipole moment, APT partial charges, occupancy
-
-
 COMPILED_PATTERNS = {pattern_name: re.compile(pattern) for (pattern_name, pattern) in RETRIEVAL_PATTERNS.items()}

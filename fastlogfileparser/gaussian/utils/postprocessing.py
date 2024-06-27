@@ -8,6 +8,17 @@ from fastlogfileparser.generic.postprocessing import (
 )
 
 
+def _dipole(in_list):
+    """Gaussian emits this:
+    0.122109D+01
+    which is parsed as this by regex:
+    [('0.118671', '+01'), ('0.118671', '+01')]
+    which we convert to this:
+    1.18671
+    """
+    return _str_to_float(['e'.join(in_list[0])])
+
+
 def _mulliken(in_list):
     out = []
     for i in in_list:
@@ -40,4 +51,5 @@ POSTPROCESSING_FUNCTIONS = {
     "route_section": lambda in_list: in_list[0],
     "charge_and_multiplicity": _charge_and_multiplicity,
     "mulliken_charges_summed": _mulliken,
+    "dipole_au": _dipole,
 }

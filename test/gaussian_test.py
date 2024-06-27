@@ -19,14 +19,16 @@ def test_duplicated_frequencies_handling():
 
 
 @pytest.mark.dependency(**pytest_dep_args)
-def test_mulliken_charges():
+def test_descriptors():
     """
-    Mulliken charges summed into heavy atoms.
+    Various molecular and atomic descriptors.
     """
 
     file = os.path.join(os.path.dirname(__file__), "data", "rxn_233.log")
-    result, _, _ = fast_gaussian_logfile_parser(file)
-    assert result.mulliken_charges_summed == [
+    result_1, result_2, result_3 = fast_gaussian_logfile_parser(file)
+    assert result_1.dipole_au == 0.122109e+01
+    assert result_2.dipole_au == 0.158789e+01
+    assert result_1.mulliken_charges_summed == [
         [
             [2, -0.022831],
             [3, 0.023347],
