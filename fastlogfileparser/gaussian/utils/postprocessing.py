@@ -59,6 +59,7 @@ POSTPROCESSING_FUNCTIONS = {
     "mulliken_charges_summed": _mulliken,
     "dipole_au": _fortran_float_to_float,
     "aniso_polarizability_au": _fortran_float_to_float,
+    "iso_polarizability_au": _fortran_float_to_float,
     "dipole_moment_debye": lambda in_list: _str_list_to_floats(in_list[-1]),  # always choose last printing
     "homo_lumo_gap": _hl_gap,
 }
