@@ -56,7 +56,11 @@ DATA = {
     "homo_lumo_gap": (
         r" Alpha  occ\. eigenvalues --[\s+-?\d+.\d+]+?\s+(-?\d+.\d+)\n"
         r" Alpha virt\. eigenvalues --\s+(-?\d+.\d+)"
-    )
+    ),
+    "beta_homo_lumo_gap": (
+        r"  Beta  occ\. eigenvalues --[\s+-?\d+.\d+]+?\s+(-?\d+.\d+)\n"
+        r"  Beta virt\. eigenvalues --\s+(-?\d+.\d+)"
+    ),
 }
 
 METADATA = {

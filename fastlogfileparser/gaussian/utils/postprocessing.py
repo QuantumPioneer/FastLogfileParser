@@ -21,8 +21,10 @@ def _fortran_float_to_float(in_list):
 
 def _hl_gap(in_list):
     """Calculates HOMO-LUMO gap from the
-    HOMO and LUMO energies"""
-    return float(in_list[-1][1]) - float(in_list[-1][0])
+    HOMO and LUMO energies
+
+    Can be printed multiple times - take the first occurrence"""
+    return float(in_list[0][1]) - float(in_list[0][0])
 
 
 def _mulliken(in_list):
@@ -62,4 +64,5 @@ POSTPROCESSING_FUNCTIONS = {
     "iso_polarizability_au": _fortran_float_to_float,
     "dipole_moment_debye": lambda in_list: _str_list_to_floats(in_list[-1]),  # always choose last printing
     "homo_lumo_gap": _hl_gap,
+    "beta_homo_lumo_gap": _hl_gap,
 }
