@@ -82,7 +82,13 @@ $3$ E0 for wavefunction methods <br>
 | Final Single Point Energy | `energy` | float | 1/job |
 | Input xyz coords | `input_coordinates` | list[list[float]] | 1/job |
 
-$1$ ignores milliseconds <br>
+#### Orca
+
+| Quantity | Key | Type | Frequency |
+| -------- | --- | ---- | --------- |
+| Area | `area` | float | 1/job |
+| Volume | `volume` | float | 1/job |
+| Energy | `energy` | float | 1/job |
 
 ## How much fast-ly-er?
 `FastLogfileParser` uses REGEX and only REGEX to retrieve data from logfiles, spending as much time in Python's excellent C-based REGEX library as possible.
