@@ -82,7 +82,7 @@ $3$ E0 for wavefunction methods <br>
 | Final Single Point Energy | `energy` | float | 1/job |
 | Input xyz coords | `input_coordinates` | list[list[float]] | 1/job |
 
-#### Orca
+#### COSMO
 
 | Quantity | Key | Type | Frequency |
 | -------- | --- | ---- | --------- |
