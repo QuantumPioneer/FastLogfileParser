@@ -38,6 +38,11 @@ def _mulliken(in_list):
     return out
 
 
+def _nmr(in_list):
+    print([[int(i[0])] + _str_list_to_floats(i[1:]) for i in in_list])
+    return [[int(i[0])] + _str_list_to_floats(i[1:]) for i in in_list]
+
+
 POSTPROCESSING_FUNCTIONS = {
     "cpu_time": _unix_time_to_seconds,
     "wall_time": _unix_time_to_seconds,
@@ -65,4 +70,5 @@ POSTPROCESSING_FUNCTIONS = {
     "dipole_moment_debye": lambda in_list: _str_list_to_floats(in_list[-1]),  # always choose last printing
     "homo_lumo_gap": _hl_gap,
     "beta_homo_lumo_gap": _hl_gap,
+    "nmr_shielding": _nmr,
 }
