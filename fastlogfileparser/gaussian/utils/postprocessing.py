@@ -39,7 +39,6 @@ def _mulliken(in_list):
 
 
 def _nmr(in_list):
-    print([[int(i[0])] + _str_list_to_floats(i[1:]) for i in in_list])
     return [[int(i[0])] + _str_list_to_floats(i[1:]) for i in in_list]
 
 
