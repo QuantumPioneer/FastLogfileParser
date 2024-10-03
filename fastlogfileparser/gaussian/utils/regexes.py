@@ -61,6 +61,7 @@ DATA = {
         r"  Beta  occ\. eigenvalues --[\s+-?\d+.\d+]+?\s+(-?\d+.\d+)\n"
         r"  Beta virt\. eigenvalues --\s+(-?\d+.\d+)"
     ),
+    "nmr_shielding": r"\s+(\d+)\s+..?\s+Isotropic =\s+(\d+.\d+)\s+Anisotropy =\s+(\d+.\d+)"
 }
 
 METADATA = {
