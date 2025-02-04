@@ -11,7 +11,7 @@ DATA = {
     "energy": r"FINAL SINGLE POINT ENERGY\s+(-?\d+.\d+)\n",
     "charge_and_multiplicity": r"...> \* xyz (-?\d) (\d)\n",
     "dipole_au": r"Magnitude \(a.u.\)       :\s+(-?\d+.\d+)\n",
-    "t1_diagnostic": r"T1 diagnostic\s+\.\.\.\s+([\d\.]+)\n"
+    "t1_diagnostic": r"T1 diagnostic\s+\.\.\.\s+([\d\.]+)"
 }
 
 METADATA = {
