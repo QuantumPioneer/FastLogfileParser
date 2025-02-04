@@ -10,7 +10,8 @@ DATA = {
     "input_coordinates": r"\|[ \d]{3}>.\w{1,2}[ ]{2,3}([\s+\d+\s+\d+\s+-?\d+\.\d+\s+-?\d+\.\d+\s+-?\d+\.\d+]+)\n",
     "energy": r"FINAL SINGLE POINT ENERGY\s+(-?\d+.\d+)\n",
     "charge_and_multiplicity": r"...> \* xyz (-?\d) (\d)\n",
-    "dipole_au": r"Magnitude \(a.u.\)       :\s+(-?\d+.\d+)\n"
+    "dipole_au": r"Magnitude \(a.u.\)       :\s+(-?\d+.\d+)\n",
+    "t1_diagnostic": r"T1 diagnostic\s+\.\.\.\s+([\d\.]+)\n"
 }
 
 METADATA = {
