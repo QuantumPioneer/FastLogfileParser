@@ -32,11 +32,21 @@ def _mulliken(in_list):
     for i in in_list:
         inner_out = []
         for row in i.split(sep="\n"):
-            atom_idx, _, mulliken_charge, _ = row.split()
+            atom_idx, _, mulliken_charge = row.split()
             inner_out.append([int(atom_idx), float(mulliken_charge)])
         out.append(inner_out)
     return out
 
+
+# def _mulliken_densities(in_list):
+#     out = []
+#     for i in in_list:
+#         inner_out = []
+#         for row in i.split(sep="\n"):
+#             atom_idx, _, mulliken_charge, spin_density = row.split()
+#             inner_out.append([int(atom_idx), float(mulliken_charge), float(spin_density)])
+#         out.append(inner_out)
+#     return out
 
 def _nmr(in_list):
     return [[int(i[0])] + _str_list_to_floats(i[1:]) for i in in_list]
@@ -63,6 +73,7 @@ POSTPROCESSING_FUNCTIONS = {
     "route_section": lambda in_list: in_list[0],
     "charge_and_multiplicity": _charge_and_multiplicity,
     "mulliken_charges_summed": _mulliken,
+    # "mulliken_charges_spin_densities_summed": _mulliken_densities,
     "dipole_au": _fortran_float_to_float,
     "aniso_polarizability_au": _fortran_float_to_float,
     "iso_polarizability_au": _fortran_float_to_float,
