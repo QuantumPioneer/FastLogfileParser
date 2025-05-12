@@ -26,7 +26,7 @@ def crush_ginc_block(opened_file):
         elif in_route_section:
             # check if block is over
             if (
-                " ----------------------------------------------------------------------\n"
+                " " + "-" * (len(line) - 2) + "\n"
                 == line
             ):
                 in_route_section = False
