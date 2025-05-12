@@ -32,7 +32,7 @@ def _mulliken(in_list):
     for i in in_list:
         inner_out = []
         for row in i.split(sep="\n"):
-            atom_idx, _, mulliken_charge = row.split()
+            atom_idx, _, mulliken_charge, *_ = row.split()
             inner_out.append([int(atom_idx), float(mulliken_charge)])
         out.append(inner_out)
     return out
