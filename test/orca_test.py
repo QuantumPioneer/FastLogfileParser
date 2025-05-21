@@ -78,4 +78,4 @@ def test_fast_orca_logfile_parser_dlpno():
         [1.116944, 1.003499, 1.262404],
         [1.645021, 1.795278, -0.262281],
     ]
-    assert result.t1_diagnostic == 0.020468528   
+    assert result.t1_diagnostic == 0.020468528
