@@ -42,13 +42,36 @@ DATA = {
         r"([\s+\d+\s+\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d\s+-?\d\.\d\d]+)\n"
         r"(?:\s+\d+\s+\d+\s+\d+)?\n"
     ),
+    # "mulliken_charges_densities_summed": (
+    #     r" Mulliken charges and spin densities with hydrogens summed into heavy atoms:\n"
+    #     r"               1          2\n"
+    #     r"((?:\s+\d+\s+[a-zA-Z]{1,3}\s+-?\d+\.\d+\s+-?\d+\.\d+)+)\n"
+    # ),
     "mulliken_charges_summed": (
-        r" Mulliken charges and spin densities with hydrogens summed into heavy atoms:\n"
-        r"               1          2\n"
-        r"((?:\s+\d+\s+[a-zA-Z]{1,3}\s+-?\d+\.\d+\s+-?\d+\.\d+)+)\n"
-        r" APT charges:"
+        r" Mulliken charges with hydrogens summed into heavy atoms:\n"
+        r"\s+1\n"
+        r"((?:\s+\d+\s+[a-zA-Z]{1,3}\s+-?\d+\.\d+)+)\n"
     ),
+    # "mbs_mulliken_charges_summed": (
+    #     r" MBS Mulliken charges with hydrogens summed into heavy atoms:\n"
+    #     r"               1\n"
+    #     r"((?:\s+\d+\s+[a-zA-Z]{1,3}\s+-?\d+\.\d+\s+)+)\n"
+    #     r" \S"
+    # ),
     "charge_and_multiplicity": r" Charge = {1,2}(-?\d) Multiplicity = (\d)",
+    "dipole_au": r"   Tot        (-?\d+.\d+)D([\+|-]\d+)",
+    "iso_polarizability_au": r"   iso        (-?\d+.\d+)D([\+|-]\d+)",
+    "aniso_polarizability_au": r"   aniso      (-?\d+.\d+)D([\+|-]\d+)",
+    "dipole_moment_debye": r"    X=\s+(-?\d+.\d+)\s+Y=\s+(-?\d+.\d+)\s+Z=\s+(-?\d+.\d+)",
+    "homo_lumo_gap": (
+        r" Alpha  occ\. eigenvalues --[\s+-?\d+.\d+]+?\s+(-?\d+.\d+)\n"
+        r" Alpha virt\. eigenvalues --\s+(-?\d+.\d+)"
+    ),
+    "beta_homo_lumo_gap": (
+        r"  Beta  occ\. eigenvalues --[\s+-?\d+.\d+]+?\s+(-?\d+.\d+)\n"
+        r"  Beta virt\. eigenvalues --\s+(-?\d+.\d+)"
+    ),
+    "nmr_shielding": r"\s+(\d+)\s+..?\s+Isotropic =\s+(\d+.\d+)\s+Anisotropy =\s+(\d+.\d+)"
 }
 
 METADATA = {
@@ -61,9 +84,4 @@ METADATA = {
 }
 
 RETRIEVAL_PATTERNS = {**DATA, **METADATA}
-
-# other options:
-# homo-lumo gap, polarizability, dipole moment, APT partial charges, occupancy
-
-
 COMPILED_PATTERNS = {pattern_name: re.compile(pattern) for (pattern_name, pattern) in RETRIEVAL_PATTERNS.items()}

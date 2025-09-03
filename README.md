@@ -60,6 +60,7 @@ job_1, job_2, job_3 = fglp(FNAME, get=("gibbs", "scf"))
 | SCF Energy | `scf` | list[float] | 1/job |
 | Vibrational Frequencies | `frequencies` | list[float] | 1/job |
 | Frequency Modes | `frequency_modes` | list[list[float]] | 1/job |
+| NMR Shielding | `nmr_shielding` | list[list[int, float, float]] | 1/job |
 | Standardized xyz coords | `std_xyz` | list[list[float]] | 1/step/job |
 | Input xyz coords | `xyz` | list[list[float]] | 1/step/job |
 | Standardized forces | `std_forces` | list[list[float]] | 1/step/job |
@@ -82,7 +83,13 @@ $3$ E0 for wavefunction methods <br>
 | Final Single Point Energy | `energy` | float | 1/job |
 | Input xyz coords | `input_coordinates` | list[list[float]] | 1/job |
 
-$1$ ignores milliseconds <br>
+#### COSMO
+
+| Quantity | Key | Type | Frequency |
+| -------- | --- | ---- | --------- |
+| Area | `area` | float | 1/job |
+| Volume | `volume` | float | 1/job |
+| Energy | `energy` | float | 1/job |
 
 ## How much fast-ly-er?
 `FastLogfileParser` uses REGEX and only REGEX to retrieve data from logfiles, spending as much time in Python's excellent C-based REGEX library as possible.

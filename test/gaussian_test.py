@@ -19,14 +19,21 @@ def test_duplicated_frequencies_handling():
 
 
 @pytest.mark.dependency(**pytest_dep_args)
-def test_mulliken_charges():
+def test_descriptors():
     """
-    Mulliken charges summed into heavy atoms.
+    Various molecular and atomic descriptors.
     """
 
     file = os.path.join(os.path.dirname(__file__), "data", "rxn_233.log")
-    result, _, _ = fast_gaussian_logfile_parser(file)
-    assert result.mulliken_charges_summed == [
+    result_1, result_2, _ = fast_gaussian_logfile_parser(file, verbose=1)
+    assert result_1.dipole_au == 0.122109e01
+    assert result_2.dipole_au == 0.158789e01
+    assert result_1.dipole_moment_debye == [-2.2032, 1.3307, -1.7344]
+    assert result_2.aniso_polarizability_au == 0.112005e03
+    assert result_2.iso_polarizability_au == 0.116915e03
+    assert result_2.homo_lumo_gap == -0.03696 - -0.33782
+    assert result_2.beta_homo_lumo_gap == -0.05882 - -0.35120
+    assert result_1.mulliken_charges_summed == [
         [
             [2, -0.022831],
             [3, 0.023347],
@@ -483,6 +490,46 @@ def test_fast_gaussian_logfile_parser_2():
     assert job.normal_termination is False
     assert job.charge_and_multiplicity == [0, 1]
     assert len(job.scf) == job.number_of_optimization_steps
+
+
+@pytest.mark.dependency(**pytest_dep_args)
+def test_fast_gaussian_logfile_parser_nmr():
+    """
+    Test parser using a gaussian log file with NMR shielding values
+    """
+
+    file = os.path.join(os.path.dirname(__file__), "data", "237500.log")
+    job = fast_gaussian_logfile_parser(file, verbose=2)[0]
+    assert job.nmr_shielding == [
+        [1, 166.7741, 37.9465],
+        [2, 190.8511, 117.122],
+        [3, 45.6783, 64.2935],
+        [4, 68.8624, 388.9648],
+        [5, 195.7116, 113.3207],
+        [6, 130.0634, 51.9268],
+        [7, 172.7552, 56.8353],
+        [8, 179.7469, 40.1276],
+        [9, 150.7909, 83.5181],
+        [10, 235.2829, 54.4991],
+        [11, 151.4629, 61.3373],
+        [12, 151.1384, 59.9659],
+        [13, 29.4065, 9.5882],
+        [14, 29.0305, 10.2075],
+        [15, 28.5521, 6.2598],
+        [16, 28.4858, 12.913],
+        [17, 26.8329, 7.2528],
+        [18, 29.0884, 7.2887],
+        [19, 30.1682, 8.3255],
+        [20, 30.9149, 12.3327],
+        [21, 31.2904, 13.3682],
+        [22, 30.3846, 7.9497],
+        [23, 29.2111, 9.8211],
+        [24, 29.5067, 11.2524],
+        [25, 29.6968, 9.456],
+        [26, 29.5085, 10.5683],
+        [27, 29.6833, 7.9136],
+        [28, 29.1883, 8.2428],
+    ]
 
 
 @pytest.mark.dependency(**pytest_dep_args)

@@ -12,4 +12,6 @@ POSTPROCESSING_FUNCTIONS = {
     "route_section": lambda in_list: in_list[0],
     "charge_and_multiplicity": _charge_and_multiplicity,
     "energy": _str_to_float,
+    "dipole_au": _str_to_float,
+    "t1_diagnostic": _str_to_float,
 }
