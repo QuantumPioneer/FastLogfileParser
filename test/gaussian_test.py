@@ -493,14 +493,14 @@ def test_fast_gaussian_logfile_parser_2():
 
 
 @pytest.mark.dependency(**pytest_dep_args)
-def test_fast_gaussian_logfile_parser_nmr():
+def test_fast_gaussian_logfile_parser_nmr_shielding_and_npa_charges():
     """
-    Test parser using a gaussian log file with NMR shielding values
+    Test parser using a gaussian log file with NMR shielding and NPA charge values
     """
 
     file = os.path.join(os.path.dirname(__file__), "data", "237500.log")
-    job = fast_gaussian_logfile_parser(file, verbose=2)[0]
-    assert job.nmr_shielding == [
+    job_1, job_2 = fast_gaussian_logfile_parser(file, verbose=2)
+    assert job_1.nmr_shielding == [
         [1, 166.7741, 37.9465],
         [2, 190.8511, 117.122],
         [3, 45.6783, 64.2935],
@@ -529,6 +529,36 @@ def test_fast_gaussian_logfile_parser_nmr():
         [26, 29.5085, 10.5683],
         [27, 29.6833, 7.9136],
         [28, 29.1883, 8.2428],
+    ]
+    assert job_2.npa_charges == [
+        [1, -0.41132],
+        [2, -0.70744],
+        [3, 1.00048],
+        [4, -0.68603],
+        [5, -0.61385],
+        [6, -0.06620],
+        [7, -0.28705],
+        [8, -0.43138],
+        [9, -0.03620],
+        [10, -0.57396],
+        [11, -0.40799],
+        [12, -0.40888],
+        [13, 0.21558],
+        [14, 0.20426],
+        [15, 0.22473],
+        [16, 0.41395],
+        [17, 0.22480],
+        [18, 0.21009],
+        [19, 0.25820],
+        [20, 0.23854],
+        [21, 0.22533],
+        [22, 0.20197],
+        [23, 0.21573],
+        [24, 0.21262],
+        [25, 0.17742],
+        [26, 0.21304],
+        [27, 0.17587],
+        [28, 0.21767],
     ]
 
 
