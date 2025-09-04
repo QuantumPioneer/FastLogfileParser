@@ -48,9 +48,9 @@ DATA = {
     #     r"((?:\s+\d+\s+[a-zA-Z]{1,3}\s+-?\d+\.\d+\s+-?\d+\.\d+)+)\n"
     # ),
     "mulliken_charges_summed": (
-        r" Mulliken charges with hydrogens summed into heavy atoms:\n"
-        r"\s+1\n"
-        r"((?:\s+\d+\s+[a-zA-Z]{1,3}\s+-?\d+\.\d+)+)\n"
+        r" Mulliken charges(?: and spin densities)? with hydrogens summed into heavy atoms:\n"
+        r"\s+1(?:\s+2)?\n"
+        r"((?:\s+\d+\s+[a-zA-Z]{1,3}\s+-?\d+\.\d+(?:\s+-?\d+\.\d+)?)+)\n"
     ),
     # "mbs_mulliken_charges_summed": (
     #     r" MBS Mulliken charges with hydrogens summed into heavy atoms:\n"
