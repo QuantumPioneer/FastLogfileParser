@@ -71,7 +71,14 @@ DATA = {
         r"  Beta  occ\. eigenvalues --[\s+-?\d+.\d+]+?\s+(-?\d+.\d+)\n"
         r"  Beta virt\. eigenvalues --\s+(-?\d+.\d+)"
     ),
-    "nmr_shielding": r"\s+(\d+)\s+..?\s+Isotropic =\s+(\d+.\d+)\s+Anisotropy =\s+(\d+.\d+)"
+    "nmr_shielding": r"\s+(\d+)\s+..?\s+Isotropic =\s+(\d+.\d+)\s+Anisotropy =\s+(\d+.\d+)",
+    "npa_charges": (
+        r"             Natural    ---------------------------------------------\n"
+        r"  Atom No    Charge        Core      Valence    Rydberg      Total\n"
+        r" --------------------------------------------------------------------\n"
+        r"((?:\s+[A-Z]{1,3}\s+\d+\s+-?\d+\.\d+\s+\d+\.\d+\s+\d+\.\d+\s+\d+\.\d+\s+\d+\.\d+)+)\n"
+        r" ====================================================================\n"
+    ),
 }
 
 METADATA = {

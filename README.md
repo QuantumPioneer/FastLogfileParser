@@ -65,6 +65,7 @@ job_1, job_2, job_3 = fglp(FNAME, get=("gibbs", "scf"))
 | Input xyz coords | `xyz` | list[list[float]] | 1/step/job |
 | Standardized forces | `std_forces` | list[list[float]] | 1/step/job |
 | Mulliken Charges (Summed into Heavy) | `mulliken_charges_summed` | list[list[float]] | 2/job |
+| Natural Population Analysis Charges | `npa_charges` | list[list[int, float]] | 1/job |
 | Charge and Multiplicity | `charge_and_multiplicity` | list[int] | 1/job |
 | Number of Atoms $^2$ | `number_of_atoms` | int | 1/job |
 | Number of Optimization Steps $^2$ | `number_of_optimization_steps` | int | 1/job |
