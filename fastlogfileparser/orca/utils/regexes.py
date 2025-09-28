@@ -7,7 +7,7 @@ import re
 #  charge and multiplicity (also in the input file section)
 
 DATA = {
-    "input_coordinates": r"\|[ \d]{3}>.\w{1,2}[ ]{1,3}([-?\d+\.\d+\s+-?\d+\.\d+\s+-?\d+\.\d+]+)\n",
+    "input_coordinates": r"\|[ \d]{3}>.\w{1,2}((?:\s+-?\d+\.\d+){3})\n",
     "energy": r"FINAL SINGLE POINT ENERGY\s+(-?\d+.\d+)\n",
     "charge_and_multiplicity": r"...> \* xyz (-?\d) (\d)\n",
     "dipole_au": r"Magnitude \(a.u.\)       :\s+(-?\d+.\d+)\n",
