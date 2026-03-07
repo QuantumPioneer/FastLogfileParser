@@ -8,7 +8,7 @@ DATA = {
     "zpe_per_atom": r"ZeroPoint=(-?\d+.\d+)",  # per atom basis in Gaussian (Hartree/Particle)
     "wavefunction_energy": r"[CBSQB3|MP2|G4|G3|G2|CCSD|CCSD\(T\)]=(-?\d+.\d+)",
     "recovered_energy": r" Recovered energy=\s+(-?\d+.\d+)",
-    "scf": r"(?<! >>>>>>>>>> Convergence criterion not met\.\n) SCF Done:  E\(.*\) =  -?(\d+\.\d+)",
+    "scf": r"(?<! >>>>>>>>>> Convergence criterion not met\.\n) SCF Done:  E\(.*\) =  (-?\d+\.\d+)",
     "frequencies": r" Frequencies --\s+(-?\d+.\d+)\s+(-?\d+.\d+)\s+(-?\d+.\d+)",
     "std_forces": (
         r" Forces in standard orientation:\n"
